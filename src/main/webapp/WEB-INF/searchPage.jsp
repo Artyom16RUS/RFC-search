@@ -21,7 +21,7 @@
         <% if(request.getAttribute("catalog") != null){%>
         <% for (Book item : (Collection<Book>)request.getAttribute("catalog")) { %>
         <li>
-            <%= item.getName() %>
+            <%= item.getName() %> : <%= item.getId() %>
         </li>
         <% } %>
         <%}%>

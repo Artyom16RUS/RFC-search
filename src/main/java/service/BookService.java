@@ -14,7 +14,7 @@ public class BookService {
 
     private Collection<Book> books = new ArrayList<>();
 
-    public void addFile(String name, Part part, Path path){
+    public void addFile(String name, Part part, Path path) {
 
         String id = generateId();
         if (part != null) {
@@ -24,15 +24,15 @@ public class BookService {
 
     }
 
-    public String generateId(){
+    public String generateId() {
         return UUID.randomUUID().toString();
     }
 
-    public void create(Book book){
+    public void create(Book book) {
         books.add(book);
     }
 
-    public void writeBook(String id, Part part, Path path){
+    public void writeBook(String id, Part part, Path path) { //записываем фаил с таким же ID как имя в базе
         try {
             part.write(path.resolve(id).toString());
         } catch (IOException e) {
@@ -40,10 +40,10 @@ public class BookService {
         }
     }
 
-    public Collection searchText(String text){
+    public Collection searchText(String text) { //поиск из списка имени
         Collection<Book> newBook = new ArrayList<>();
-        for(Book book : books){
-            if(book.getName().equals(text)){
+        for (Book book : books) {
+            if (book.getName().equals(text)) {
                 newBook.add(book);
 
             }

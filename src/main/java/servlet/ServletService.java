@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Collection;
 
 public class ServletService extends HttpServlet {
@@ -23,10 +24,10 @@ public class ServletService extends HttpServlet {
 
 
     @Override
-    public void init()  {
+    public void init() {
         bookService = new BookService();
         uploadPath = Paths.get(System.getenv("UPLOAD_PATH"));
-        if(Files.notExists(uploadPath)){
+        if (Files.notExists(uploadPath)) {
             try {
                 Files.createDirectory(uploadPath);
             } catch (IOException e) {
@@ -41,45 +42,47 @@ public class ServletService extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        String url = req.getRequestURI().substring(req.getContextPath().length()); //получаем URL запроса
 
         req.setCharacterEncoding("UTF-8");
         req.setAttribute("books", bookService.getBooks());
+        Collection<Book> books = new ArrayList<>();
 
-        if(req.getMethod().equals("POST")){
-            if(req.getParameter("action").equals("save")){
+        if (req.getMethod().equals("POST")) { // метод - сохраняем фаил
+            if (req.getParameter("action").equals("save")) {
                 String name = req.getParameter("name");
                 Part file = req.getPart("file");
-                bookService.addFile(name, file, uploadPath);
+                bookService.addFile(name, file, uploadPath); //добавляем в список фаил
 //                resp.sendRedirect(req.getRequestURI());
             }
 
-        }
-        if(req.getMethod().equals("POST")){  //можно по ссылке передать что ищем
-            Collection<Book> books;
-            if(req.getParameter("action").equals("search")){
 
-                String searchName = req.getParameter("search");
-                books = bookService.searchText(searchName);
+            if (req.getParameter("action").equals("search")) { //поиск по названию
+
+                String searchName = req.getParameter("search"); //имя
+                books = bookService.searchText(searchName); // отдали список найденых имен
                 req.setAttribute("catalog", books);
-//                resp.sendRedirect("/");
-               req.getRequestDispatcher("/WEB-INF/searchPage.jsp").forward(req, resp);
-//                req.getRequestDispatcher("/WEB-INF/houses.jsp").forward(req, resp);
-
+                req.getRequestDispatcher("/WEB-INF/searchPage.jsp").forward(req, resp);
 
 
             }
 
-            if(req.getParameter("action").equals("return")){
+            if (req.getParameter("action").equals("return")) {
                 req.getRequestDispatcher("/WEB-INF/mainPage.jsp").forward(req, resp);
             }
         }
 
-
+        if (url.equals("/search")) { // для запроса /search
+            if (req.getMethod().equals("GET")) {
+                System.out.println(url);
+                req.setAttribute("catalog", books);
+                req.getRequestDispatcher("/WEB-INF/searchPage.jsp").forward(req, resp);
+                return;
+            }
+        }
 
 
         req.getRequestDispatcher("/WEB-INF/mainPage.jsp").forward(req, resp);
-
-
 
 
     }

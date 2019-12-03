@@ -10,7 +10,8 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Enrise</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
 
@@ -21,21 +22,29 @@
     <input type="submit" value="Добавить"/>
 </form>
 
-        <ul>
-            <% if (request.getAttribute("books") != null) {%>
-            <% for (Book item : (Collection<Book>) request.getAttribute("books")) { %>
-            <li>
-                <%= item.getName() %>
-            </li>
-            <% } %>
-            <%}%>
-        </ul>
+<ul>
+    <% if (request.getAttribute("books") != null) {%>
+    <% for (Book item : (Collection<Book>) request.getAttribute("books")) { %>
+    <li>
+        <%= item.getName() %> : <%= item.getId() %>
+    </li>
+    <% } %>
+    <%}%>
+</ul>
 
-    <form action="<%= request.getContextPath() %>/search" method="post">
-        <input type="hidden" name="action" value="search">
-        <input name="search" placeholder="Поиск">
+<form action="<%= request.getContextPath() %>/search" method="POST">
+    <input type="hidden" name="action" value="search">
+    <input name="search" placeholder="Поиск">
 
-    </form>
+</form>
+
+<%--    <form method="get">--%>
+<%--        <label>Поиск по названию:--%>
+<%--            <input type="text" name="search"><br />--%>
+<%--        </label>--%>
+
+<%--        <button type="submit">Поиск</button>--%>
+<%--    </form>--%>
 
 
 </body>
