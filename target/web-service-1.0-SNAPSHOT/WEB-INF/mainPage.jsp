@@ -14,38 +14,29 @@
 </head>
 <body>
 
-<form action="<%= request.getContextPath() %>/" method="post" enctype="multipart/form-data">
+<form style="text-align: center" action="<%= request.getContextPath() %>/" method="post" enctype="multipart/form-data">
     <input type="hidden" name="action" value="save">
     Навзание книги: <input name="name"/>
     <input type="file" name="file" accept="image/*">
     <input type="submit" value="Добавить"/>
 </form>
 
-
-    <ul>
-        <% if(request.getAttribute("books") != null){%>
-            <% for (Book item : (Collection<Book>)request.getAttribute("books")) { %>
+        <ul>
+            <% if (request.getAttribute("books") != null) {%>
+            <% for (Book item : (Collection<Book>) request.getAttribute("books")) { %>
             <li>
                 <%= item.getName() %>
             </li>
             <% } %>
-        <%}%>
-    </ul>
+            <%}%>
+        </ul>
 
-    <form action="<%= request.getContextPath() %>/" method="post">
+    <form action="<%= request.getContextPath() %>/search" method="post">
         <input type="hidden" name="action" value="search">
         <input name="search" placeholder="Поиск">
-        <%-- если поле всего одно, то Enter приводит к отправке формы --%>
+
     </form>
 
-    <ul>
-        <% if(request.getAttribute("catalog") != null){%>
-        <% for (Book item : (Collection<Book>)request.getAttribute("catalog")) { %>
-        <li>
-            <%= item.getName() %>
-        </li>
-        <% } %>
-        <%}%>
-    </ul>
+
 </body>
 </html>

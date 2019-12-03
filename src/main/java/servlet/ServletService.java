@@ -57,10 +57,20 @@ public class ServletService extends HttpServlet {
         if(req.getMethod().equals("POST")){  //можно по ссылке передать что ищем
             Collection<Book> books;
             if(req.getParameter("action").equals("search")){
+
                 String searchName = req.getParameter("search");
                 books = bookService.searchText(searchName);
                 req.setAttribute("catalog", books);
+//                resp.sendRedirect("/");
+               req.getRequestDispatcher("/WEB-INF/searchPage.jsp").forward(req, resp);
+//                req.getRequestDispatcher("/WEB-INF/houses.jsp").forward(req, resp);
 
+
+
+            }
+
+            if(req.getParameter("action").equals("return")){
+                req.getRequestDispatcher("/WEB-INF/mainPage.jsp").forward(req, resp);
             }
         }
 

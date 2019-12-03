@@ -12,6 +12,10 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
+    <form style="text-align: center" action="<%= request.getContextPath() %>/search" method="post">
+        <input type="hidden" name="action" value="search">
+        <input name="search" placeholder="Поиск">
+    </form>
 
     <ul>
         <% if(request.getAttribute("catalog") != null){%>
@@ -22,5 +26,10 @@
         <% } %>
         <%}%>
     </ul>
+
+    <form style="text-align: center" action="<%= request.getContextPath() %>/" method="post">
+        <input type="hidden" name="action" value="return">
+        <input type="submit" value="Назад"/>
+    </form>
 </body>
 </html>
