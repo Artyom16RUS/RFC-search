@@ -1,6 +1,5 @@
 <%@ page import="model.Book" %>
 <%@ page import="java.util.Collection" %>
-<%@ page import="java.io.Writer" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!doctype html>
 <html lang="en">
@@ -13,29 +12,6 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
-
-<form action="<%= request.getContextPath() %>/" method="post" enctype="multipart/form-data">
-    <input type="hidden" name="action" value="save">
-    Навзание книги: <input name="name"/>
-    <input type="file" name="file" accept="image/*">
-    <input type="submit" value="Добавить"/>
-</form>
-
-
-    <ul>
-        <% if(request.getAttribute("books") != null){%>
-            <% for (Book item : (Collection<Book>)request.getAttribute("books")) { %>
-            <li>
-                <%= item.getName() %>
-            </li>
-            <% } %>
-        <%}%>
-    </ul>
-
-    <form action="<%= request.getContextPath() %>/" method="post">
-        <input type="hidden" name="action" value="search">
-        <input name="search" placeholder="Поиск">
-    </form>
 
     <ul>
         <% if(request.getAttribute("catalog") != null){%>

@@ -1,7 +1,10 @@
 package servlet;
 
+import model.Book;
 import service.BookService;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +14,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Collection;
 
 public class ServletService extends HttpServlet {
 
@@ -30,8 +34,8 @@ public class ServletService extends HttpServlet {
             }
         }
 
-//        fileService.create(new Book("1", "Anna"));
-//        fileService.create(new Book("2", "George"));
+        bookService.create(new Book("1", "Anna"));
+        bookService.create(new Book("2", "George"));
     }
 
     @Override
@@ -48,7 +52,14 @@ public class ServletService extends HttpServlet {
                 bookService.addFile(name, file, uploadPath);
 //                resp.sendRedirect(req.getRequestURI());
             }
+
+        }
+        if(req.getMethod().equals("POST")){  //можно по ссылке передать что ищем
+            Collection<Book> books;
             if(req.getParameter("action").equals("search")){
+                String searchName = req.getParameter("search");
+                books = bookService.searchText(searchName);
+                req.setAttribute("catalog", books);
 
             }
         }

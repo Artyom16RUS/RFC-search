@@ -35,6 +35,7 @@
     <form action="<%= request.getContextPath() %>/" method="post">
         <input type="hidden" name="action" value="search">
         <input name="search" placeholder="Поиск">
+        <%-- если поле всего одно, то Enter приводит к отправке формы --%>
     </form>
 
     <ul>

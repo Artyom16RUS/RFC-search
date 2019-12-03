@@ -40,6 +40,17 @@ public class BookService {
         }
     }
 
+    public Collection searchText(String text){
+        Collection<Book> newBook = new ArrayList<>();
+        for(Book book : books){
+            if(book.getName().equals(text)){
+                newBook.add(book);
+
+            }
+        }
+        return newBook;
+    }
+
     public Collection<Book> getBooks() {
         return books;
     }
