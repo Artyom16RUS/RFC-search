@@ -35,6 +35,7 @@ public class BookService {
     public void writeBook(String id, Part part, Path path) { //записываем фаил с таким же ID как имя в базе
         try {
             part.write(path.resolve(id).toString());
+            part.delete();
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -53,7 +54,8 @@ public class ServletService extends HttpServlet {
                 String name = req.getParameter("name");
                 Part file = req.getPart("file");
                 bookService.addFile(name, file, uploadPath); //добавляем в список фаил
-//                resp.sendRedirect(req.getRequestURI());
+                resp.sendRedirect(req.getRequestURI());
+                return;
             }
 
 
@@ -63,22 +65,39 @@ public class ServletService extends HttpServlet {
                 books = bookService.searchText(searchName); // отдали список найденых имен
                 req.setAttribute("catalog", books);
                 req.getRequestDispatcher("/WEB-INF/searchPage.jsp").forward(req, resp);
-
+                return;
 
             }
 
             if (req.getParameter("action").equals("return")) {
                 req.getRequestDispatcher("/WEB-INF/mainPage.jsp").forward(req, resp);
+                return;
             }
         }
 
         if (url.equals("/search")) { // для запроса /search
             if (req.getMethod().equals("GET")) {
-                System.out.println(url);
+//                System.out.println(url);
                 req.setAttribute("catalog", books);
                 req.getRequestDispatcher("/WEB-INF/searchPage.jsp").forward(req, resp);
                 return;
             }
+        }
+
+        if (url.startsWith("/images/")) {
+            String id = url.substring("/images/".length());
+            System.out.println(id);
+            Path image = uploadPath.resolve(id);
+            if (Files.exists(image)) {
+                Files.copy(image, resp.getOutputStream());
+                return;
+            }
+
+//            try {
+//                Files.copy(Paths.get(getServletContext().getResource("/WEB-INF/404.png").toURI()), resp.getOutputStream());
+//            } catch (URISyntaxException e) {
+//                throw new IOException(e);
+//            }
         }
 
 
