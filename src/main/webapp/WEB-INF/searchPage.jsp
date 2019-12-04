@@ -65,7 +65,7 @@
                 <table cellspacing="0">
                     <tr>
                         <td class="lc">
-                            <%= item.getName() %> : <%= item.getId()%>
+                            <%= item.getName() %>
                         </td>
                         <td class="even">
                             <a href="<%= request.getContextPath() %>/text/<%= item.getId() %>" download="<%= item.getName()%>.txt">Скачать файл</a>

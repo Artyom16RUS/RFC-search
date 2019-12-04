@@ -22,6 +22,7 @@ public class ServletService extends HttpServlet {
 
     private BookService bookService;
     private Path uploadPath;
+    private Path publicPath;
     private Collection<Book> books;
 
 
@@ -29,6 +30,7 @@ public class ServletService extends HttpServlet {
     public void init() {
         bookService = new BookService();
         uploadPath = Paths.get(System.getenv("UPLOAD_PATH"));//
+        publicPath = Paths.get(System.getenv("PUBLIC_PATH"));
         books = new ArrayList<>();
 
         if (Files.notExists(uploadPath)) {
@@ -39,8 +41,8 @@ public class ServletService extends HttpServlet {
             }
         }
 
-        bookService.create(new Book("1", "Anna"));
-        bookService.create(new Book("2", "George"));
+//        bookService.create(new Book("1", "Anna"));
+//        bookService.create(new Book("2", "George"));
     }
 
     @Override
@@ -93,7 +95,8 @@ public class ServletService extends HttpServlet {
         if (url.startsWith("/text/")) {
             String id = url.substring("/text/".length());
             System.out.println(id + " file");
-            Path text = uploadPath.resolve(id);
+            Path text = publicPath.resolve(id);
+            System.out.println(text);
             if (Files.exists(text)) {
                 Files.copy(text, resp.getOutputStream());
                 return;

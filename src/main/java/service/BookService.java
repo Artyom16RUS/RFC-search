@@ -47,44 +47,42 @@ public class BookService {
 
     public Collection searchText(String text) { //поиск из списка имени
         Collection<Book> newBook = new ArrayList<>();
-        Collection<String> arrayText = new ArrayList<>();
 
-        for (Book book : books) {
-            String id = book.getId();
-            String path = Paths.get(System.getenv("UPLOAD_PATH")) +"/" + id;
-            String pathPublic = "D:\\U4eba\\Java\\OtherWork\\Diplom\\public\\http.txt";
-            try {
-                if(new File(path).exists()){
+        ArrayList<String> result = new ArrayList<>();
+        String newId = generateId();
+        String pathPublic = Paths.get(System.getenv("PUBLIC_PATH")) + "\\" + newId;
+        try {
+            FileWriter fw = new FileWriter(pathPublic, true);
+            for (Book book : books) {
+                String id = book.getId();
+                String path = Paths.get(System.getenv("UPLOAD_PATH")) + "\\" + id;
+                if (new File(path).exists()) {
                     BufferedReader bf = new BufferedReader(new InputStreamReader(new FileInputStream(path)));
-                    FileWriter fw = new FileWriter(pathPublic, true);
+
                     String line;
-                    while ((line = bf.readLine())!= null){
+                    while ((line = bf.readLine()) != null) {
+                        if (line.toLowerCase().contains(text.toLowerCase())) {
+                            result.add(line);
 
-                        if(line.contains(text)){
-//                            System.out.println(line + " after");
-                            fw.write(line);
-
-//                            arrayText.add(line);
-                            newBook.add(book);
 
                         }
-
                     }
-                    fw.flush();
                 }
-
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
             }
-
+            for (String t : result) {
+                fw.write(t);
+                fw.append(System.getProperty("line.separator"));
+                fw.flush();
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-
+        System.out.println(newId + " ID");
+        newBook.add(new Book(newId, text));
         return newBook;
     }
-
-
 
 
     public Collection<Book> getBooks() {
