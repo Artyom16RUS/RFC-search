@@ -2,6 +2,8 @@
 <%@ page import="java.util.Collection" %>
 <%@ page import="java.io.Writer" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<% Part part; %>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -10,33 +12,47 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Enrise</title>
-<%--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"--%>
-<%--          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">--%>
+    <style>
+        div {
+            /*background: #fc3; !* Цвет фона *!*/
+            /*border: 2px solid black; !* Параметры рамки *!*/
+            padding: 40px; /* Поля вокруг текста */
+            margin-top: 10%; /* Отступ сверху */
+        }
+    </style>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
 
-<form style="text-align: center" action="<%= request.getContextPath() %>/" method="post" enctype="multipart/form-data">
-    <input type="hidden" name="action" value="save">
-    Навзание книги: <input name="name"/>
-    <input type="file" name="file" accept="image/*">
-    <input type="submit" value="Добавить"/>
-</form>
+    <div>
+        <form style="text-align: center" action="<%= request.getContextPath() %>/search" method="POST">
+            <input type="hidden" name="action" value="search">
+            <input name="search" placeholder="Поиск">
+            <input type="submit" value="Найти">
+        </form>
+    </div>
 
-<ul>
-    <% if (request.getAttribute("books") != null) {%>
-    <% for (Book item : (Collection<Book>) request.getAttribute("books")) { %>
-    <li>
-        <%= item.getName() %> : <%= item.getId() %>
-    </li>
-    <% } %>
-    <%}%>
-</ul>
 
-<form action="<%= request.getContextPath() %>/search" method="POST">
-    <input type="hidden" name="action" value="search">
-    <input name="search" placeholder="Поиск">
+    <form style="text-align: center" action="<%= request.getContextPath() %>/" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="action" value="save">
+        <input type="file" name="file" accept=".txt">
+        <%--        Навзание книги: <input name="name"/>--%>
+        <input type="submit" value="Добавить"/>
+    </form>
 
-</form>
+
+    <ul>
+        <% if (request.getAttribute("books") != null) {%>
+            <% for (Book item : (Collection<Book>) request.getAttribute("books")) { %>
+                <li>
+                    <%= item.getName() %> : <%= item.getId() %>
+                </li>
+            <% } %>
+        <%}%>
+    </ul>
+
+
 
 <%--    <form method="get">--%>
 <%--        <label>Поиск по названию:--%>
@@ -47,5 +63,5 @@
 <%--    </form>--%>
 
 
-</body>
+    </body>
 </html>

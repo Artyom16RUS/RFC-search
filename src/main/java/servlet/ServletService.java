@@ -22,12 +22,15 @@ public class ServletService extends HttpServlet {
 
     private BookService bookService;
     private Path uploadPath;
+    private Collection<Book> books;
 
 
     @Override
     public void init() {
         bookService = new BookService();
-        uploadPath = Paths.get(System.getenv("UPLOAD_PATH"));
+        uploadPath = Paths.get(System.getenv("UPLOAD_PATH"));//
+        books = new ArrayList<>();
+
         if (Files.notExists(uploadPath)) {
             try {
                 Files.createDirectory(uploadPath);
@@ -47,12 +50,15 @@ public class ServletService extends HttpServlet {
 
         req.setCharacterEncoding("UTF-8");
         req.setAttribute("books", bookService.getBooks());
-        Collection<Book> books = new ArrayList<>();
+
 
         if (req.getMethod().equals("POST")) { // метод - сохраняем фаил
             if (req.getParameter("action").equals("save")) {
-                String name = req.getParameter("name");
                 Part file = req.getPart("file");
+                String name = Paths.get(file.getSubmittedFileName()).getFileName().toString();//получаем имя из файла
+                int length = name.length();
+                int lengthTxt = ".txt".length();
+                name = name.substring(0, length - lengthTxt); //вырезаем .txt
                 bookService.addFile(name, file, uploadPath); //добавляем в список фаил
                 resp.sendRedirect(req.getRequestURI());
                 return;
@@ -84,17 +90,17 @@ public class ServletService extends HttpServlet {
             }
         }
 
-        if (url.startsWith("/images/")) {
-            String id = url.substring("/images/".length());
-            System.out.println(id);
-            Path image = uploadPath.resolve(id);
-            if (Files.exists(image)) {
-                Files.copy(image, resp.getOutputStream());
+        if (url.startsWith("/text/")) {
+            String id = url.substring("/text/".length());
+            System.out.println(id + " file");
+            Path text = uploadPath.resolve(id);
+            if (Files.exists(text)) {
+                Files.copy(text, resp.getOutputStream());
                 return;
             }
 
 //            try {
-//                Files.copy(Paths.get(getServletContext().getResource("/WEB-INF/404.png").toURI()), resp.getOutputStream());
+//                Files.copy(Paths.get(getServletContext().getResource("/WEB-INF/404.jpg").toURI()), resp.getOutputStream());
 //            } catch (URISyntaxException e) {
 //                throw new IOException(e);
 //            }

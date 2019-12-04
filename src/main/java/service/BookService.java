@@ -4,7 +4,9 @@ import model.Book;
 
 import javax.servlet.http.Part;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.UUID;
@@ -17,6 +19,7 @@ public class BookService {
     public void addFile(String name, Part part, Path path) {
 
         String id = generateId();
+        System.out.println(id + " id");
         if (part != null) {
             writeBook(id, part, path);
         }
@@ -44,13 +47,19 @@ public class BookService {
     public Collection searchText(String text) { //поиск из списка имени
         Collection<Book> newBook = new ArrayList<>();
         for (Book book : books) {
-            if (book.getName().equals(text)) {
+            if (book.getName().contains(text)) {
                 newBook.add(book);
 
             }
+
+
         }
+
         return newBook;
     }
+
+
+
 
     public Collection<Book> getBooks() {
         return books;
