@@ -68,6 +68,7 @@ public class ServletService extends HttpServlet {
 
 
             if (req.getParameter("action").equals("search")) { //поиск по названию
+                
 
                 String searchName = req.getParameter("search"); //имя
                 books = bookService.searchText(searchName); // отдали список найденых имен

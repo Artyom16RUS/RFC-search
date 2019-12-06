@@ -36,7 +36,8 @@
 
     <form style="text-align: center" action="<%= request.getContextPath() %>/" method="post" enctype="multipart/form-data">
         <input type="hidden" name="action" value="save">
-        <input type="file" name="file" accept=".txt">
+        <input type="file" multiple name="file" accept=".txt">
+<%--        TODO все равно добавляется один фаил--%>
         <%--        Навзание книги: <input name="name"/>--%>
         <input type="submit" value="Добавить"/>
     </form>

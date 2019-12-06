@@ -58,6 +58,7 @@ public class BookService {
                 String path = Paths.get(System.getenv("UPLOAD_PATH")) + "\\" + id;
                 if (new File(path).exists()) {
                     BufferedReader bf = new BufferedReader(new InputStreamReader(new FileInputStream(path)));
+                    result.add("[" + book.getName() + ".txt]: ");
 
                     String line;
                     while ((line = bf.readLine()) != null) {
@@ -67,6 +68,7 @@ public class BookService {
 
                         }
                     }
+                    result.add("\n");
                 }
             }
             for (String t : result) {
