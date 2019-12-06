@@ -1,4 +1,4 @@
-<%@ page import="model.Book" %>
+<%@ page import="model.Document" %>
 <%@ page import="java.util.Collection" %>
 <%@ page import="java.io.Writer" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -37,32 +37,19 @@
     <form style="text-align: center" action="<%= request.getContextPath() %>/" method="post" enctype="multipart/form-data">
         <input type="hidden" name="action" value="save">
         <input type="file" name="file" accept=".txt" multiple required>
-<%--        TODO все равно добавляется один фаил--%>
-        <%--         Навзание книги: <input name="name"/>--%>
         <input type="submit" value="Добавить"/>
     </form>
 
 
     <ul>
         <% if (request.getAttribute("books") != null) {%>
-            <% for (Book item : (Collection<Book>) request.getAttribute("books")) { %>
+            <% for (Document item : (Collection<Document>) request.getAttribute("books")) { %>
                 <li>
                     <%= item.getName() %> : <%= item.getId() %>
                 </li>
             <% } %>
         <%}%>
     </ul>
-
-
-
-<%--    <form method="get">--%>
-<%--        <label>Поиск по названию:--%>
-<%--            <input type="text" name="search"><br />--%>
-<%--        </label>--%>
-
-<%--        <button type="submit">Поиск</button>--%>
-<%--    </form>--%>
-
 
     </body>
 </html>

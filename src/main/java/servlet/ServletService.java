@@ -1,19 +1,14 @@
 package servlet;
 
-import model.Book;
-import service.BookService;
+import model.Document;
+import service.DocumentService;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -24,18 +19,18 @@ import java.util.stream.Collectors;
 
 public class ServletService extends HttpServlet {
 
-    private BookService bookService;
+    private DocumentService documentService;
     private Path uploadPath;
     private Path publicPath;
-    private Collection<Book> books;
-
+    private Collection<Document> documents;
 
     @Override
     public void init() {
-        bookService = new BookService();
-        uploadPath = Paths.get(System.getenv("UPLOAD_PATH"));//
+
+        documentService = new DocumentService();
+        uploadPath = Paths.get(System.getenv("UPLOAD_PATH"));
         publicPath = Paths.get(System.getenv("PUBLIC_PATH"));
-        books = new ArrayList<>();
+        documents = new ArrayList<>();
 
         if (Files.notExists(uploadPath)) {
             try {
@@ -44,79 +39,62 @@ public class ServletService extends HttpServlet {
                 e.printStackTrace();
             }
         }
-
-
     }
 
     @Override
-    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         String url = req.getRequestURI().substring(req.getContextPath().length()); //получаем URL запроса
-
-        req.setCharacterEncoding("UTF-8");
-        req.setAttribute("books", bookService.getBooks());
-
-        if (req.getMethod().equals("POST")) { // метод - сохраняем фаил
-            if (req.getParameter("action").equals("save")) {
-                List<Part> fileParts = req.getParts().stream().filter(part -> "file".equals(part.getName())).collect(Collectors.toList());
-//                System.out.println("[" + fileParts.size() + "]");
-                for (Part file : fileParts) {
-                    String name = Paths.get(file.getSubmittedFileName()).getFileName().toString();//получаем имя из файла
-//                    System.out.println("[name: ]" + name);
-                    int length = name.length();
-                    int lengthTxt = ".txt".length();
-                    name = name.substring(0, length - lengthTxt); //вырезаем .txt
-                    bookService.addFile(name, file, uploadPath); //добавляем в список фаил
-                }
-                resp.sendRedirect(req.getRequestURI());
-                return;
-            }
-
-
-            if (req.getParameter("action").equals("search")) { //поиск по названию
-                String searchName = req.getParameter("search"); //имя
-                books = bookService.searchText(searchName); // отдали список найденых имен
-                req.setAttribute("catalog", books);
-                req.getRequestDispatcher("/WEB-INF/searchPage.jsp").forward(req, resp);
-                return;
-
-            }
-
-            if (req.getParameter("action").equals("return")) {
-                req.getRequestDispatcher("/WEB-INF/mainPage.jsp").forward(req, resp);
-                return;
-            }
-        }
-
         if (url.equals("/search")) { // для запроса /search
-            if (req.getMethod().equals("GET")) {
-//                System.out.println(url);
-                req.setAttribute("catalog", books);
-                req.getRequestDispatcher("/WEB-INF/searchPage.jsp").forward(req, resp);
-                return;
-            }
+            req.getRequestDispatcher("/WEB-INF/searchPage.jsp").forward(req, resp);
+            return;
         }
 
         if (url.startsWith("/text/")) {
             String id = url.substring("/text/".length());
-            System.out.println(id + " file");
-            Path text = publicPath.resolve(id);
-            System.out.println(text);
-            if (Files.exists(text)) {
-                Files.copy(text, resp.getOutputStream());
+            Path path = publicPath.resolve(id);
+            if (Files.exists(path)) {
+                Files.copy(path, resp.getOutputStream());
                 return;
             }
-
-//            try {
-//                Files.copy(Paths.get(getServletContext().getResource("/WEB-INF/404.jpg").toURI()), resp.getOutputStream());
-//            } catch (URISyntaxException e) {
-//                throw new IOException(e);
-//            }
         }
-
-
         req.getRequestDispatcher("/WEB-INF/mainPage.jsp").forward(req, resp);
 
+    }
 
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        req.setAttribute("books", documentService.getDocuments());
+        if (req.getParameter("action").equals("save")) {
+            try {
+                List<Part> fileParts = req.getParts().stream().filter(part -> "file".equals(part.getName())).collect(Collectors.toList());//множественное добавлнение
+                for (Part file : fileParts) {
+                    String name = Paths.get(file.getSubmittedFileName()).getFileName().toString();//получаем имя из файла
+                    name = name.substring(0, name.length() - ".txt".length()); //вырезаем .txt
+                    documentService.addFile(name, file, uploadPath); //добавляем в список фаил
+                }
+                resp.sendRedirect(req.getRequestURI());
+                return;
+            } catch (Exception e){
+                e.printStackTrace();
+                req.getRequestDispatcher("/WEB-INF/404.jsp").forward(req, resp);
+            }
+
+        }
+
+        if (req.getParameter("action").equals("search")) { //поиск по названию
+            String searchName = req.getParameter("search"); //имя
+            documents = documentService.searchText(searchName); // отдали список найденых имен
+            req.setAttribute("catalog", documents);
+            req.getRequestDispatcher("/WEB-INF/searchPage.jsp").forward(req, resp);
+            return;
+        }
+
+        if (req.getParameter("action").equals("return")) {
+            req.getRequestDispatcher("/WEB-INF/mainPage.jsp").forward(req, resp);
+            return;
+        }
+        req.getRequestDispatcher("/WEB-INF/mainPage.jsp").forward(req, resp);
     }
 }

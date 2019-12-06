@@ -8,7 +8,7 @@
         <servlet-class>servlet.ServletService</servlet-class>
         <load-on-startup>1</load-on-startup>
         <multipart-config>
-            <max-book-size>10240</max-book-size>
+            <max-document-size>10240</max-document-size>
             <max-request-size>10240</max-request-size>
         </multipart-config>
     </servlet>

@@ -1,4 +1,4 @@
-<%@ page import="model.Book" %>
+<%@ page import="model.Document" %>
 <%@ page import="java.util.Collection" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!doctype html>
@@ -8,7 +8,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Enrise</title>
+    <title>RFC Searcher</title>
     <style>
         div {
             /*background: #fc3; !* Цвет фона *!*/
@@ -55,13 +55,13 @@
 
     <form style="text-align: center" action="<%= request.getContextPath() %>/search" method="post">
         <input type="hidden" name="action" value="search" required >
-        <input name="search" placeholder="Поиск">
+        <input name="search" placeholder="RFC Searcher">
     </form>
 
 
     <ul>
         <% if (request.getAttribute("catalog") != null) {%>
-            <% for (Book item : (Collection<Book>) request.getAttribute("catalog")) { %>
+            <% for (Document item : (Collection<Document>) request.getAttribute("catalog")) { %>
                 <table cellspacing="0">
                     <tr>
                         <td class="lc">
