@@ -54,7 +54,7 @@
     </div>
 
     <form style="text-align: center" action="<%= request.getContextPath() %>/search" method="post">
-        <input type="hidden" name="action" value="search">
+        <input type="hidden" name="action" value="search" required >
         <input name="search" placeholder="Поиск">
     </form>
 

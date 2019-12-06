@@ -10,13 +10,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class ServletService extends HttpServlet {
 
@@ -41,8 +45,7 @@ public class ServletService extends HttpServlet {
             }
         }
 
-//        bookService.create(new Book("1", "Anna"));
-//        bookService.create(new Book("2", "George"));
+
     }
 
     @Override
@@ -53,23 +56,24 @@ public class ServletService extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         req.setAttribute("books", bookService.getBooks());
 
-
         if (req.getMethod().equals("POST")) { // метод - сохраняем фаил
             if (req.getParameter("action").equals("save")) {
-                Part file = req.getPart("file");
-                String name = Paths.get(file.getSubmittedFileName()).getFileName().toString();//получаем имя из файла
-                int length = name.length();
-                int lengthTxt = ".txt".length();
-                name = name.substring(0, length - lengthTxt); //вырезаем .txt
-                bookService.addFile(name, file, uploadPath); //добавляем в список фаил
+                List<Part> fileParts = req.getParts().stream().filter(part -> "file".equals(part.getName())).collect(Collectors.toList());
+//                System.out.println("[" + fileParts.size() + "]");
+                for (Part file : fileParts) {
+                    String name = Paths.get(file.getSubmittedFileName()).getFileName().toString();//получаем имя из файла
+//                    System.out.println("[name: ]" + name);
+                    int length = name.length();
+                    int lengthTxt = ".txt".length();
+                    name = name.substring(0, length - lengthTxt); //вырезаем .txt
+                    bookService.addFile(name, file, uploadPath); //добавляем в список фаил
+                }
                 resp.sendRedirect(req.getRequestURI());
                 return;
             }
 
 
             if (req.getParameter("action").equals("search")) { //поиск по названию
-                
-
                 String searchName = req.getParameter("search"); //имя
                 books = bookService.searchText(searchName); // отдали список найденых имен
                 req.setAttribute("catalog", books);

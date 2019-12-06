@@ -28,7 +28,7 @@
     <div>
         <form style="text-align: center" action="<%= request.getContextPath() %>/search" method="POST">
             <input type="hidden" name="action" value="search">
-            <input name="search" placeholder="Поиск">
+            <input name="search" placeholder="Поиск" required >
             <input type="submit" value="Найти">
         </form>
     </div>
@@ -36,9 +36,9 @@
 
     <form style="text-align: center" action="<%= request.getContextPath() %>/" method="post" enctype="multipart/form-data">
         <input type="hidden" name="action" value="save">
-        <input type="file" multiple name="file" accept=".txt">
+        <input type="file" name="file" accept=".txt" multiple required>
 <%--        TODO все равно добавляется один фаил--%>
-        <%--        Навзание книги: <input name="name"/>--%>
+        <%--         Навзание книги: <input name="name"/>--%>
         <input type="submit" value="Добавить"/>
     </form>
 
