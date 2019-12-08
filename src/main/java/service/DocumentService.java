@@ -15,13 +15,13 @@ public class DocumentService {
 
     private Collection<Document> documents = new ArrayList<>();
 
-    public String addFile(Part part, Path path) {
+    public String addFile(Part part, Path path) throws Exception {
 
         String status = "Complete";
         String format = ".txt";
         String name = Paths.get(part.getSubmittedFileName()).getFileName().toString();//получаем имя из файла
         int lineLength = name.length() - format.length();
-        
+
         if (name.substring(lineLength).equals(format)) {
             name = name.substring(0, lineLength); //вырезаем .txt
             String id = generateId();
@@ -33,7 +33,7 @@ public class DocumentService {
         return status;
     }
 
-    public String generateId() {
+    private String generateId() {
         return UUID.randomUUID().toString();
     }
 
@@ -50,19 +50,19 @@ public class DocumentService {
         }
     }
 
-    public Collection searchText(String text) { //поиск из списка имени
-        Collection<Document> newDocument = new ArrayList<>();
+    public Collection searchText(String text) { //поиск из списка имени http
 
+        Collection<Document> newDocument = new ArrayList<>();// новй каталог файлов
         ArrayList<String> result = new ArrayList<>();
-        String newId = generateId();
-        String pathPublic = Paths.get(System.getenv("PUBLIC_PATH")) + "\\" + newId;
+        String newId = generateId();//1211
+        String pathPublic = Paths.get(System.getenv("PUBLIC_PATH")) + "\\" + newId;//C:\1211 id для еще не записаного файла
         try {
-            FileWriter fw = new FileWriter(pathPublic, true);
+
             for (Document document : documents) {
-                String id = document.getId();
-                String path = Paths.get(System.getenv("UPLOAD_PATH")) + "\\" + id;
+                String id = document.getId(); //325
+                String path = Paths.get(System.getenv("UPLOAD_PATH")) + "\\" + id;//C:\325 находим фаил с этим id
                 if (new File(path).exists()) {
-                    BufferedReader bf = new BufferedReader(new InputStreamReader(new FileInputStream(path)));
+                    BufferedReader bf = new BufferedReader(new InputStreamReader(new FileInputStream(path)));//C:\325 откуда читаем
                     ArrayList<String> subResult = new ArrayList<>();
                     subResult.add("[" + document.getName() + ".txt]: ");
                     String line;
@@ -74,21 +74,25 @@ public class DocumentService {
                     if (subResult.size() > 1) {
                         result.addAll(subResult);
                     }
-                    result.add("\n");
+                    System.out.println(result.size());
                 }
             }
-            for (String t : result) {
-                fw.write(t);
-                fw.append(System.getProperty("line.separator"));
-                fw.flush();
+            if (result.size() > 0) {
+                FileWriter fw = new FileWriter(pathPublic, true);//
+                for (String string : result) {
+                    fw.write(string);
+                    fw.append(System.getProperty("line.separator"));
+                    fw.flush();
+                }
+                newDocument.add(new Document(newId, text));
             }
+
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println(newId + " ID");
-        newDocument.add(new Document(newId, text));
+
         return newDocument;
     }
 

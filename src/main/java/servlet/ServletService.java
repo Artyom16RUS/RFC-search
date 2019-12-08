@@ -46,7 +46,7 @@ public class ServletService extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        req.setAttribute("statusAdd", added);//TODO  remove
+        req.setAttribute("statusAdd", added);
         req.setAttribute("statusNotAdd", notAdded);
         String url = req.getRequestURI().substring(req.getContextPath().length()); //получаем URL запроса
         if (url.equals("/search")) { // для запроса /search
@@ -81,7 +81,6 @@ public class ServletService extends HttpServlet {
                         notAdded.add(status);
                     }
                 }
-
                 resp.sendRedirect(req.getRequestURI());
                 return;
             } catch (Exception e) {
@@ -91,9 +90,15 @@ public class ServletService extends HttpServlet {
         }
 
         if (req.getParameter("action").equals("search")) { //поиск по названию
-            String searchName = req.getParameter("search"); //имя
-            documents = documentService.searchText(searchName); // отдали список найденых имен
-            req.setAttribute("catalog", documents);
+            String text = req.getParameter("search");
+            documents = documentService.searchText(text); // отдали список найденых имен
+
+            if(documents.isEmpty()){
+                req.setAttribute("searchName", text);
+            } else {
+                req.setAttribute("catalog", documents);
+            }
+
             req.getRequestDispatcher("/WEB-INF/result.jsp").forward(req, resp);
             return;
         }

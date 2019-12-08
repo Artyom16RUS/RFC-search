@@ -55,7 +55,6 @@
 
     <jsp:include page="search.jsp" />
 
-
     <ul>
         <% if (request.getAttribute("catalog") != null) {%>
             <% for (Document item : (Collection<Document>) request.getAttribute("catalog")) { %>
@@ -70,6 +69,17 @@
                     </tr>
                 </table>
             <% } %>
+        <%} if (request.getAttribute("searchName") != null) {%>
+            <table cellspacing="0">
+                <tr>
+                    <td class="lc">
+                        <%= request.getAttribute("searchName")%>
+                    </td>
+                    <td class="even">
+                        <p>Not found</p>
+                    </td>
+                </tr>
+            </table>
         <%}%>
     </ul>
 
