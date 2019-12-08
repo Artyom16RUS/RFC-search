@@ -44,9 +44,10 @@ public class ServletService extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        req.setAttribute("books", documentService.getDocuments());
         String url = req.getRequestURI().substring(req.getContextPath().length()); //получаем URL запроса
         if (url.equals("/search")) { // для запроса /search
-            req.getRequestDispatcher("/WEB-INF/searchPage.jsp").forward(req, resp);
+            req.getRequestDispatcher("/WEB-INF/result.jsp").forward(req, resp);
             return;
         }
 
@@ -58,8 +59,7 @@ public class ServletService extends HttpServlet {
                 return;
             }
         }
-        req.getRequestDispatcher("/WEB-INF/mainPage.jsp").forward(req, resp);
-
+        req.getRequestDispatcher("/WEB-INF/main.jsp").forward(req, resp);
     }
 
     @Override
@@ -87,14 +87,14 @@ public class ServletService extends HttpServlet {
             String searchName = req.getParameter("search"); //имя
             documents = documentService.searchText(searchName); // отдали список найденых имен
             req.setAttribute("catalog", documents);
-            req.getRequestDispatcher("/WEB-INF/searchPage.jsp").forward(req, resp);
+            req.getRequestDispatcher("/WEB-INF/result.jsp").forward(req, resp);
             return;
         }
 
         if (req.getParameter("action").equals("return")) {
-            req.getRequestDispatcher("/WEB-INF/mainPage.jsp").forward(req, resp);
+            req.getRequestDispatcher("/WEB-INF/main.jsp").forward(req, resp);
             return;
         }
-        req.getRequestDispatcher("/WEB-INF/mainPage.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/main.jsp").forward(req, resp);
     }
 }

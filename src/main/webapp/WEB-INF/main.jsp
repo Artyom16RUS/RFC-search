@@ -11,7 +11,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Enrise</title>
+    <title>RFC Searcher</title>
     <style>
         div {
             /*background: #fc3; !* Цвет фона *!*/
@@ -25,13 +25,7 @@
 </head>
 <body>
 
-    <div>
-        <form style="text-align: center" action="<%= request.getContextPath() %>/search" method="POST">
-            <input type="hidden" name="action" value="search">
-            <input name="search" placeholder="Поиск" required >
-            <input type="submit" value="Найти">
-        </form>
-    </div>
+    <jsp:include page="search.jsp" />
 
 
     <form style="text-align: center" action="<%= request.getContextPath() %>/" method="post" enctype="multipart/form-data">

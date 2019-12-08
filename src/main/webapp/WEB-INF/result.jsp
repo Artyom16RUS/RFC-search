@@ -13,8 +13,9 @@
         div {
             /*background: #fc3; !* Цвет фона *!*/
             /*border: 2px solid black; !* Параметры рамки *!*/
-            padding: 20px; /* Поля вокруг текста */
-            margin-top: 5%; /* Отступ сверху */
+            padding: 5px; /* Поля вокруг текста */
+            margin-top: 1%; /* Отступ сверху */
+            margin-bottom: 1%;
         }
     </style>
     <style type="text/css">
@@ -49,14 +50,11 @@
     <div>
         <form style="text-align: center" action="<%= request.getContextPath() %>/" method="post">
             <input type="hidden" name="action" value="return">
-            <input type="submit" value="Назад"/>
+            <input type="submit" value="RFC Searcher"/>
         </form>
     </div>
 
-    <form style="text-align: center" action="<%= request.getContextPath() %>/search" method="post">
-        <input type="hidden" name="action" value="search" required >
-        <input name="search" placeholder="RFC Searcher">
-    </form>
+    <jsp:include page="search.jsp" />
 
 
     <ul>
