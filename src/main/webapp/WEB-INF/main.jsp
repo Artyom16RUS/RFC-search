@@ -33,16 +33,18 @@
         <input type="submit" value="Добавить"/>
     </form>
 
+    <form style="text-align: center">
+        <ul>
+            <% if (request.getAttribute("books") != null) {%>
+                <% for (Document item : (Collection<Document>) request.getAttribute("books")) { %>
+                    <li>
+                        <%= item.getName() %> : <%= item.getId() %>
+                    </li>
+                <% } %>
+            <%}%>
+        </ul>
+    </form>
 
-    <ul>
-        <% if (request.getAttribute("books") != null) {%>
-            <% for (Document item : (Collection<Document>) request.getAttribute("books")) { %>
-                <li>
-                    <%= item.getName() %> : <%= item.getId() %>
-                </li>
-            <% } %>
-        <%}%>
-    </ul>
 
     </body>
 </html>

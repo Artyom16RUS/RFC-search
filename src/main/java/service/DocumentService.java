@@ -15,22 +15,27 @@ public class DocumentService {
 
     private Collection<Document> documents = new ArrayList<>();
 
-    public void addFile(String name, Part part, Path path) {
+    public void addFile(Part part, Path path) {
 
-        String id = generateId();
-//        if (part != null) {
-//
-//        }
-        writeBook(id, part, path);
-        create(new Document(id, name));
-
+        String format = ".txt";
+        String name = Paths.get(part.getSubmittedFileName()).getFileName().toString();//получаем имя из файла
+        int lineLength = name.length() - format.length();
+        
+        if (name.substring(lineLength).equals(format)) {
+            name = name.substring(0, lineLength); //вырезаем .txt
+            String id = generateId();
+            writeBook(id, part, path);
+            addToCatalog(new Document(id, name));
+        } else {
+            System.out.println("Nope " + name);
+        }
     }
 
     public String generateId() {
         return UUID.randomUUID().toString();
     }
 
-    public void create(Document document) {
+    public void addToCatalog(Document document) {
         documents.add(document);
     }
 
@@ -64,7 +69,7 @@ public class DocumentService {
                             subResult.add(line);
                         }
                     }
-                    if(subResult.size() > 1){
+                    if (subResult.size() > 1) {
                         result.addAll(subResult);
                     }
                     result.add("\n");

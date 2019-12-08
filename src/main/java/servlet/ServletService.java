@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -51,7 +52,7 @@ public class ServletService extends HttpServlet {
             return;
         }
 
-        if (url.startsWith("/text/")) { // TODO added Exception
+        if (url.startsWith("/text/")) {
             String id = url.substring("/text/".length());
             Path path = publicPath.resolve(id);
             if (Files.exists(path)) {
@@ -65,22 +66,18 @@ public class ServletService extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        req.setAttribute("books", documentService.getDocuments());
-        if (req.getParameter("action").equals("save")) {
+        if (req.getParameter("action").equals("save")) { //TODO status
             try {
                 List<Part> fileParts = req.getParts().stream().filter(part -> "file".equals(part.getName())).collect(Collectors.toList());//множественное добавлнение
-                for (Part file : fileParts) {
-                    String name = Paths.get(file.getSubmittedFileName()).getFileName().toString();//получаем имя из файла
-                    name = name.substring(0, name.length() - ".txt".length()); //вырезаем .txt
-                    documentService.addFile(name, file, uploadPath); //добавляем в список фаил
+                for (Part part : fileParts) {
+                    documentService.addFile(part, uploadPath);
                 }
                 resp.sendRedirect(req.getRequestURI());
                 return;
-            } catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
                 req.getRequestDispatcher("/WEB-INF/404.jsp").forward(req, resp);
             }
-
         }
 
         if (req.getParameter("action").equals("search")) { //поиск по названию
