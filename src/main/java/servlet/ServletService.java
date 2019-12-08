@@ -22,7 +22,7 @@ public class ServletService extends HttpServlet {
     private DocumentService documentService;
     private Path uploadPath;
     private Path publicPath;
-    private Collection<Document> documents;
+    private Collection<Document> documents; //TODO replaced by DB
 
     @Override
     public void init() {
@@ -44,14 +44,14 @@ public class ServletService extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        req.setAttribute("books", documentService.getDocuments());
+        req.setAttribute("books", documentService.getDocuments());//TODO  remove
         String url = req.getRequestURI().substring(req.getContextPath().length()); //получаем URL запроса
         if (url.equals("/search")) { // для запроса /search
             req.getRequestDispatcher("/WEB-INF/result.jsp").forward(req, resp);
             return;
         }
 
-        if (url.startsWith("/text/")) {
+        if (url.startsWith("/text/")) { // TODO added Exception
             String id = url.substring("/text/".length());
             Path path = publicPath.resolve(id);
             if (Files.exists(path)) {
