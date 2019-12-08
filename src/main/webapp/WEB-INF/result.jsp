@@ -21,7 +21,7 @@
     <style type="text/css">
         TABLE {
             width: 1700px; /* Ширина таблицы */
-            border: 2px solid black; /* Рамка вокруг таблицы */
+            border: 2px solid gray; /* Рамка вокруг таблицы */
             /*background: #778899; !* Цвет фона *!*/
             color: black; /* Цвет текста */
         }
@@ -31,7 +31,7 @@
         }
         TH {
             color: black; /* Цвет текста */
-            border-bottom: 4px double black; /* Двойная линия снизу */
+            border-bottom: 4px gray; /* Двойная линия снизу */
         }
         .even { /* Стиль для четных колонок */
             /*background: #ffe4b5; !* Цвет фона *!*/

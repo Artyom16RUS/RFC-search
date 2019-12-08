@@ -35,10 +35,10 @@
 
     <form style="text-align: center">
         <ul>
-            <% if (request.getAttribute("books") != null) {%>
-                <% if(((Collection<Document>) request.getAttribute("books")).size() == 1) {%>
+            <% if (request.getAttribute("statusAdd") != null) {%>
+                <% if(((Collection<Document>) request.getAttribute("statusAdd")).size() == 1) {%>
                     <p>File added</p>
-                <%} if(((Collection<Document>) request.getAttribute("books")).size() > 1)  {%>
+                <%} if(((Collection<Document>) request.getAttribute("statusAdd")).size() > 1)  {%>
                     <p>Files added</p>
                 <% } %>
             <%}%>
@@ -46,15 +46,13 @@
     </form>
     <form style="text-align: center">
         <ul>
-            <% if (request.getAttribute("status") != null) {%>
-                <% for (String item : (Collection<String>) request.getAttribute("status")) { %>
+            <% if (request.getAttribute("statusNotAdd") != null) {%>
+                <% for (String item : (Collection<String>) request.getAttribute("statusNotAdd")) { %>
                     <%= item %>
                 <% } %>
             <%}%>
         </ul>
     </form>
-
-
 
     </body>
 </html>

@@ -46,8 +46,8 @@ public class ServletService extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        req.setAttribute("books", added);//TODO  remove
-        req.setAttribute("status", notAdded);
+        req.setAttribute("statusAdd", added);//TODO  remove
+        req.setAttribute("statusNotAdd", notAdded);
         String url = req.getRequestURI().substring(req.getContextPath().length()); //получаем URL запроса
         if (url.equals("/search")) { // для запроса /search
             req.getRequestDispatcher("/WEB-INF/result.jsp").forward(req, resp);
@@ -68,17 +68,17 @@ public class ServletService extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        if (req.getParameter("action").equals("save")) { //TODO status
+        if (req.getParameter("action").equals("save")) {
             notAdded = new ArrayList<>();
             added = new ArrayList<>();
             try {
                 List<Part> fileParts = req.getParts().stream().filter(part -> "file".equals(part.getName())).collect(Collectors.toList());//множественное добавлнение
                 for (Part part : fileParts) {
-                    String t = documentService.addFile(part, uploadPath);
-                    if(!t.equals("Complete")){
-                        notAdded.add(t);
+                    String status = documentService.addFile(part, uploadPath);
+                    if(status.equals("Complete")){
+                        added.add(status);
                     } else {
-                        added.add(t);
+                        notAdded.add(status);
                     }
                 }
 
