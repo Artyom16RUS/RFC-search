@@ -15,8 +15,9 @@ public class DocumentService {
 
     private Collection<Document> documents = new ArrayList<>();
 
-    public void addFile(Part part, Path path) {
+    public String addFile(Part part, Path path) {
 
+        String status = "Complete";
         String format = ".txt";
         String name = Paths.get(part.getSubmittedFileName()).getFileName().toString();//получаем имя из файла
         int lineLength = name.length() - format.length();
@@ -27,8 +28,9 @@ public class DocumentService {
             writeBook(id, part, path);
             addToCatalog(new Document(id, name));
         } else {
-            System.out.println("Nope " + name);
+            status = "File don't added " + name;
         }
+        return status;
     }
 
     public String generateId() {

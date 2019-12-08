@@ -36,14 +36,24 @@
     <form style="text-align: center">
         <ul>
             <% if (request.getAttribute("books") != null) {%>
-                <% for (Document item : (Collection<Document>) request.getAttribute("books")) { %>
-                    <li>
-                        <%= item.getName() %> : <%= item.getId() %>
-                    </li>
+                <% if(((Collection<Document>) request.getAttribute("books")).size() == 1) {%>
+                    <p>File added</p>
+                <%} if(((Collection<Document>) request.getAttribute("books")).size() > 1)  {%>
+                    <p>Files added</p>
                 <% } %>
             <%}%>
         </ul>
     </form>
+    <form style="text-align: center">
+        <ul>
+            <% if (request.getAttribute("status") != null) {%>
+                <% for (String item : (Collection<String>) request.getAttribute("status")) { %>
+                    <%= item %>
+                <% } %>
+            <%}%>
+        </ul>
+    </form>
+
 
 
     </body>

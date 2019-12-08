@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -24,6 +23,8 @@ public class ServletService extends HttpServlet {
     private Path uploadPath;
     private Path publicPath;
     private Collection<Document> documents; //TODO replaced by DB
+    private Collection<String> notAdded;
+    private Collection<String> added;
 
     @Override
     public void init() {
@@ -45,7 +46,8 @@ public class ServletService extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        req.setAttribute("books", documentService.getDocuments());//TODO  remove
+        req.setAttribute("books", added);//TODO  remove
+        req.setAttribute("status", notAdded);
         String url = req.getRequestURI().substring(req.getContextPath().length()); //получаем URL запроса
         if (url.equals("/search")) { // для запроса /search
             req.getRequestDispatcher("/WEB-INF/result.jsp").forward(req, resp);
@@ -67,11 +69,19 @@ public class ServletService extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         if (req.getParameter("action").equals("save")) { //TODO status
+            notAdded = new ArrayList<>();
+            added = new ArrayList<>();
             try {
                 List<Part> fileParts = req.getParts().stream().filter(part -> "file".equals(part.getName())).collect(Collectors.toList());//множественное добавлнение
                 for (Part part : fileParts) {
-                    documentService.addFile(part, uploadPath);
+                    String t = documentService.addFile(part, uploadPath);
+                    if(!t.equals("Complete")){
+                        notAdded.add(t);
+                    } else {
+                        added.add(t);
+                    }
                 }
+
                 resp.sendRedirect(req.getRequestURI());
                 return;
             } catch (Exception e) {
