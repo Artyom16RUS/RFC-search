@@ -11,6 +11,7 @@ import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.LinkedHashSet;
 import java.util.UUID;
 
 
@@ -53,7 +54,8 @@ public class DocumentService {
 
     public Collection<Document> searchText(String text) { //TODO Thread
 
-        ArrayList<String> result = new ArrayList<>();
+//        Collection<String> result = new ArrayList<>();
+        Collection<String> result = new LinkedHashSet<>();
         try {
             for (Document document : db.getAll()) {
                 String id = document.getId();
@@ -61,17 +63,19 @@ public class DocumentService {
                 if (new File(path).exists()) {
                     BufferedReader bf = new BufferedReader(new InputStreamReader(new FileInputStream(path)));
                     ArrayList<String> subResult = new ArrayList<>();
-
+//                    String subResult;
                     subResult.add("[" + document.getName() + "]: ");
+
                     String line;
 
                     while ((line = bf.readLine()) != null) {
                         if (line.toLowerCase().contains(text.toLowerCase())) {
                             subResult.add(line);
-                        }
+                         }
                     }
                     if (subResult.size() > 1) {
-                        result.addAll(subResult);
+                        subResult.add(System.getProperty("line.separator"));
+                        result.add(String.join(System.getProperty("line.separator"), subResult));
                     }
                 }
             }
@@ -81,7 +85,7 @@ public class DocumentService {
                 FileWriter fw = new FileWriter(pathPublic, true);
                 for (String string : result) {
                     fw.write(string);
-                    fw.append(System.getProperty("line.separator"));
+//                    fw.append(System.getProperty("line.separator"));
                     fw.flush();
                 }
                 document.add(new Document(id, text));
