@@ -22,9 +22,9 @@ public class ServletService extends HttpServlet {
     private DocumentService documentService;
     private Path uploadPath;
     private Path publicPath;
-    private Collection<Document> documents; //TODO replaced by DB
+    private Collection<Document> documents;
     private Collection<String> notAdded;
-    private Collection<String> added;
+    private int quantity;
 
     @Override
     public void init() {
@@ -46,10 +46,10 @@ public class ServletService extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        req.setAttribute("statusAdd", added);
+        req.setAttribute("statusAdd", quantity);
         req.setAttribute("statusNotAdd", notAdded);
-        String url = req.getRequestURI().substring(req.getContextPath().length()); //получаем URL запроса
-        if (url.equals("/search")) { // для запроса /search
+        String url = req.getRequestURI().substring(req.getContextPath().length());
+        if (url.equals("/search")) {
             req.getRequestDispatcher("/WEB-INF/result.jsp").forward(req, resp);
             return;
         }
@@ -70,15 +70,15 @@ public class ServletService extends HttpServlet {
 
         if (req.getParameter("action").equals("save")) {
             notAdded = new ArrayList<>();
-            added = new ArrayList<>();
             try {
                 List<Part> fileParts = req.getParts().stream().filter(part -> "file".equals(part.getName())).collect(Collectors.toList());//множественное добавлнение
                 for (Part part : fileParts) {
-                    String status = documentService.addFile(part, uploadPath);
-                    if(status.equals("Complete")){
-                        added.add(status);
+                    String name = Paths.get(part.getSubmittedFileName()).getFileName().toString();
+                    boolean status = documentService.addFile(name, part, uploadPath);
+                    if (status) {
+                        quantity++;
                     } else {
-                        notAdded.add(status);
+                        notAdded.add(name);
                     }
                 }
                 resp.sendRedirect(req.getRequestURI());
@@ -89,16 +89,11 @@ public class ServletService extends HttpServlet {
             }
         }
 
-        if (req.getParameter("action").equals("search")) { //поиск по названию
+
+        if (req.getParameter("action").equals("search")) {
             String text = req.getParameter("search");
-            documents = documentService.searchText(text); // отдали список найденых имен
-
-            if(documents.isEmpty()){
-                req.setAttribute("searchName", text);
-            } else {
-                req.setAttribute("catalog", documents);
-            }
-
+            documents = documentService.searchText(text);
+            req.setAttribute("catalog", documents);
             req.getRequestDispatcher("/WEB-INF/result.jsp").forward(req, resp);
             return;
         }

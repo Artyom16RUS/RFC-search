@@ -36,9 +36,9 @@
     <form style="text-align: center">
         <ul>
             <% if (request.getAttribute("statusAdd") != null) {%>
-                <% if(((Collection<Document>) request.getAttribute("statusAdd")).size() == 1) {%>
+                <% if(((Integer) request.getAttribute("statusAdd")) == 1) {%>
                     <p>File added</p>
-                <%} if(((Collection<Document>) request.getAttribute("statusAdd")).size() > 1)  {%>
+                <%} if(((Integer) request.getAttribute("statusAdd")) > 1)  {%>
                     <p>Files added</p>
                 <% } %>
             <%}%>
@@ -48,7 +48,7 @@
         <ul>
             <% if (request.getAttribute("statusNotAdd") != null) {%>
                 <% for (String item : (Collection<String>) request.getAttribute("statusNotAdd")) { %>
-                    <%= item %>
+                    <%= "File don't added: " + item  %>
                 <% } %>
             <%}%>
         </ul>

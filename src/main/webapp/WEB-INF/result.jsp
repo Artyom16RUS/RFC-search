@@ -25,63 +25,66 @@
             /*background: #778899; !* Цвет фона *!*/
             color: black; /* Цвет текста */
         }
+
         TD, TH {
             text-align: right; /* Выравнивание по центру */
             padding: 3px; /* Поля вокруг текста */
         }
+
         TH {
             color: black; /* Цвет текста */
             border-bottom: 4px gray; /* Двойная линия снизу */
         }
+
         .even { /* Стиль для четных колонок */
             /*background: #ffe4b5; !* Цвет фона *!*/
             color: black; /* Цвет текста */
         }
+
         .lc { /* Стиль для первой колонки */
             text-align: left; /* Выравнивание по левому краю */
             color: black; /* Цвет текста */
         }
     </style>
-    <jsp:include page="style.jsp" />
+    <jsp:include page="style.jsp"/>
 </head>
 <body>
 
-    <div>
-        <form style="text-align: center" action="<%= request.getContextPath() %>/" method="post">
-            <input type="hidden" name="action" value="return">
-            <input type="submit" value="RFC Searcher"/>
-        </form>
-    </div>
+<div>
+    <form style="text-align: center" action="<%= request.getContextPath() %>/" method="post">
+        <input type="hidden" name="action" value="return">
+        <input type="submit" value="RFC Searcher"/>
+    </form>
+</div>
 
-    <jsp:include page="search.jsp" />
+<jsp:include page="search.jsp"/>
 
-    <ul>
-        <% if (request.getAttribute("catalog") != null) {%>
-            <% for (Document item : (Collection<Document>) request.getAttribute("catalog")) { %>
-                <table cellspacing="0">
-                    <tr>
-                        <td class="lc">
-                            <%= item.getName() %>
-                        </td>
-                        <td class="even">
-                            <a href="<%= request.getContextPath() %>/text/<%= item.getId() %>" download="<%= item.getName()%>.txt">Скачать файл</a>
-                        </td>
-                    </tr>
-                </table>
-            <% } %>
-        <%} if (request.getAttribute("searchName") != null) {%>
-            <table cellspacing="0">
-                <tr>
-                    <td class="lc">
-                        <%= request.getAttribute("searchName")%>
-                    </td>
-                    <td class="even">
-                        <p>Not found</p>
-                    </td>
-                </tr>
-            </table>
-        <%}%>
-    </ul>
+<ul>
+    <% if (request.getAttribute("catalog") != null) {%>
+        <% for (Document item : (Collection<Document>) request.getAttribute("catalog")) { %>
+        <table cellspacing="0">
+            <tr>
+                <% if (item.getId() != "0") {%>
+                <td class="lc">
+                    <%= item.getName() %>
+                </td>
+                <td class="even">
+                    <a href="<%= request.getContextPath() %>/text/<%= item.getId() %>" download="<%= item.getName()%>.txt">Скачать
+                        файл</a>
+                </td>
+                <%} else {%>
+                <td class="lc">
+                    <%= item.getName() %>
+                </td>
+                <td class="even">
+                    <p>Not found</p>
+                </td>
+                <%}%>
+            </tr>
+        </table>
+        <% } %>
+    <%} %>
+</ul>
 
 
 </body>
