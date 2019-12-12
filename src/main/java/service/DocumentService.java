@@ -17,10 +17,11 @@ import java.util.UUID;
 
 public class DocumentService {
 
-    private Collection<Document> document = new ArrayList<>(); //TreeMap
+    private Collection<Document> document; //TreeMap
     private DataBase db;
 
-    {
+    public DocumentService() {
+        updateCollection();
         try {
             db = new DataBase();
         } catch (NamingException e) {
@@ -30,6 +31,9 @@ public class DocumentService {
         }
     }
 
+    private void updateCollection() {
+        document = new ArrayList<>();
+    }
 
     public boolean addFile(String name, Part part, Path path) throws Exception {
         boolean status = false;
@@ -39,6 +43,7 @@ public class DocumentService {
             String id = db.create(name);
             writeBook(id, part, path);
             status = true;
+            updateCollection();
         }
         return status;
     }
@@ -52,9 +57,9 @@ public class DocumentService {
         }
     }
 
-    private boolean replay(String name){
+    private boolean replay(String name) {
         for (Document doc : document) {
-            if(name.equals(doc.getName())) {
+            if (name.equals(doc.getName())) {
                 document.add(doc);
                 return true;
             }
@@ -64,7 +69,7 @@ public class DocumentService {
 
     public Collection<Document> searchByName(String name) { //TODO Thread
 
-        if(replay(name)){
+        if (replay(name)) {
             return document;
         }
 
@@ -83,7 +88,7 @@ public class DocumentService {
                     while ((line = bf.readLine()) != null) {
                         if (line.toLowerCase().contains(name.toLowerCase())) {
                             subResult.add(line);
-                         }
+                        }
                     }
                     if (subResult.size() > 1) {
                         subResult.add(System.getProperty("line.separator"));

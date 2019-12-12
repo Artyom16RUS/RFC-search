@@ -99,6 +99,7 @@ public class ServletService extends HttpServlet {
         }
 
         if (req.getParameter("action").equals("return")) {
+
             req.getRequestDispatcher("/WEB-INF/main.jsp").forward(req, resp);
             return;
         }
