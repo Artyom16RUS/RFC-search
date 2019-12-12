@@ -17,7 +17,7 @@ import java.util.UUID;
 
 public class DocumentService {
 
-    private Collection<Document> document = new ArrayList<>();
+    private Collection<Document> document = new ArrayList<>(); //TreeMap
     private DataBase db;
 
     {
@@ -52,9 +52,22 @@ public class DocumentService {
         }
     }
 
-    public Collection<Document> searchText(String text) { //TODO Thread
+    private boolean replay(String name){
+        for (Document doc : document) {
+            if(name.equals(doc.getName())) {
+                document.add(doc);
+                return true;
+            }
+        }
+        return false;
+    }
 
-//        Collection<String> result = new ArrayList<>();
+    public Collection<Document> searchByName(String name) { //TODO Thread
+
+        if(replay(name)){
+            return document;
+        }
+
         Collection<String> result = new LinkedHashSet<>();
         try {
             for (Document document : db.getAll()) {
@@ -63,13 +76,12 @@ public class DocumentService {
                 if (new File(path).exists()) {
                     BufferedReader bf = new BufferedReader(new InputStreamReader(new FileInputStream(path)));
                     ArrayList<String> subResult = new ArrayList<>();
-//                    String subResult;
                     subResult.add("[" + document.getName() + "]: ");
 
                     String line;
 
                     while ((line = bf.readLine()) != null) {
-                        if (line.toLowerCase().contains(text.toLowerCase())) {
+                        if (line.toLowerCase().contains(name.toLowerCase())) {
                             subResult.add(line);
                          }
                     }
@@ -80,25 +92,24 @@ public class DocumentService {
                 }
             }
             if (result.size() > 0) {
-                String id = UUID.randomUUID().toString();
-                String pathPublic = Paths.get(System.getenv("PUBLIC_PATH")) + "\\" + id;
+                String newId = UUID.randomUUID().toString();
+                String pathPublic = Paths.get(System.getenv("PUBLIC_PATH")) + "\\" + newId;
                 FileWriter fw = new FileWriter(pathPublic, true);
                 for (String string : result) {
                     fw.write(string);
-//                    fw.append(System.getProperty("line.separator"));
                     fw.flush();
                 }
-                document.add(new Document(id, text));
+                document.add(new Document(newId, name));
             } else {
-                document.add(new Document("0", text));
+                document.add(new Document("0", name));
             }
 
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+//            e.printStackTrace();
         } catch (IOException e) {
-            e.printStackTrace();
+//            e.printStackTrace();
         } catch (SQLException e) {
-            e.printStackTrace();
+//            e.printStackTrace();
         }
 
         return document;

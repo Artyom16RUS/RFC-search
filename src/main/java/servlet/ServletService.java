@@ -92,7 +92,7 @@ public class ServletService extends HttpServlet {
 
         if (req.getParameter("action").equals("search")) {
             String text = req.getParameter("search");
-            documents = documentService.searchText(text);
+            documents = documentService.searchByName(text);
             req.setAttribute("catalog", documents);
             req.getRequestDispatcher("/WEB-INF/result.jsp").forward(req, resp);
             return;
