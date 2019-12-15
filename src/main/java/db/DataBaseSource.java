@@ -9,7 +9,7 @@ import javax.sql.DataSource;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
+
 
 public class DataBaseSource {
     private final DataSource ds;
@@ -42,16 +42,13 @@ public class DataBaseSource {
         }
     }
 
-    public String create(String name) throws SQLException {
-        String id;
+    public void create(String  id, String name) throws SQLException {
         try (Connection conn = ds.getConnection()) {
             try (PreparedStatement stmt = conn.prepareStatement("INSERT INTO document (id, name) VALUES (?, ?)")) {
-                id = UUID.randomUUID().toString();
                 stmt.setString(1, id);
                 stmt.setString(2, name);
                 stmt.execute();
             }
         }
-        return id;
     }
 }

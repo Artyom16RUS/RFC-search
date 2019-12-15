@@ -50,8 +50,8 @@ public class ServletService extends HttpServlet {
         req.setAttribute("statusNotAdd", notAdded);
         String url = req.getRequestURI().substring(req.getContextPath().length());
         if (url.equals("/search")) {
+            req.setAttribute("catalog", documents);
             req.getRequestDispatcher("/WEB-INF/result.jsp").forward(req, resp);
-//            resp.sendRedirect("/WEB-INF/result.jsp");
             return;
         }
 
@@ -60,8 +60,8 @@ public class ServletService extends HttpServlet {
             Path path = publicPath.resolve(id);
             if (Files.exists(path)) {
                 Files.copy(path, resp.getOutputStream());
-                return;
             }
+            return;
         }
         req.getRequestDispatcher("/WEB-INF/main.jsp").forward(req, resp);
     }
@@ -83,24 +83,22 @@ public class ServletService extends HttpServlet {
                     }
                 }
                 resp.sendRedirect(req.getRequestURI());
-                return;
             } catch (Exception e) {
                 e.printStackTrace();
                 req.getRequestDispatcher("/WEB-INF/404.jsp").forward(req, resp);
             }
+            return;
         }
 
 
         if (req.getParameter("action").equals("search")) {
             String text = req.getParameter("search");
             documents = documentService.searchByName(text);
-            req.setAttribute("catalog", documents);
-            req.getRequestDispatcher("/WEB-INF/result.jsp").forward(req, resp);
+            resp.sendRedirect(req.getRequestURI());
             return;
         }
 
         if (req.getParameter("action").equals("return")) {
-
             req.getRequestDispatcher("/WEB-INF/main.jsp").forward(req, resp);
             return;
         }

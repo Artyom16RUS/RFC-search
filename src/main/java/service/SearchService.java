@@ -12,7 +12,7 @@ import java.util.Collection;
 import java.util.LinkedHashSet;
 import java.util.UUID;
 
-public class SearchService implements Runnable{
+public class SearchService implements Runnable {
 
     private Collection<Document> document;
     private DataBaseSource dbs;
