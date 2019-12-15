@@ -51,6 +51,7 @@ public class ServletService extends HttpServlet {
         String url = req.getRequestURI().substring(req.getContextPath().length());
         if (url.equals("/search")) {
             req.getRequestDispatcher("/WEB-INF/result.jsp").forward(req, resp);
+//            resp.sendRedirect("/WEB-INF/result.jsp");
             return;
         }
 
