@@ -11,10 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class DataBase {
+public class DataBaseSource {
     private final DataSource ds;
 
-    public DataBase() throws NamingException, SQLException {
+    public DataBaseSource() throws NamingException, SQLException {
         Context context = new InitialContext();
         ds = (DataSource) context.lookup("java:/comp/env/jdbc/db");
         try (Connection conn = ds.getConnection()) {

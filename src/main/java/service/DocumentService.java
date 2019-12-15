@@ -1,6 +1,7 @@
 package service;
 
-import db.DataBase;
+import db.DataBaseResult;
+import db.DataBaseSource;
 import model.Document;
 
 import javax.naming.NamingException;
@@ -12,18 +13,18 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedHashSet;
-import java.util.UUID;
-
 
 public class DocumentService {
 
     private Collection<Document> document; //TreeMap
-    private DataBase db;
+    private DataBaseSource dbs;
+    private DataBaseResult dbr;
 
     public DocumentService() {
         updateCollection();
         try {
-            db = new DataBase();
+            dbs = new DataBaseSource();
+            dbr = new DataBaseResult();
         } catch (NamingException e) {
             e.printStackTrace();
         } catch (SQLException e) {
@@ -40,15 +41,15 @@ public class DocumentService {
         String format = ".txt";
         int lineLength = name.length() - format.length();
         if (name.substring(lineLength).equals(format)) {
-            String id = db.create(name);
-            writeBook(id, part, path);
+            String id = dbs.create(name);
+            writeDocument(id, part, path);
             status = true;
             updateCollection();
         }
         return status;
     }
 
-    private void writeBook(String id, Part part, Path path) {
+    private void writeDocument(String id, Part part, Path path) {
         try {
             part.write(path.resolve(id).toString());
             part.delete();
@@ -58,11 +59,15 @@ public class DocumentService {
     }
 
     private boolean replay(String name) {
-        for (Document doc : document) {
-            if (name.equals(doc.getName())) {
-                document.add(doc);
-                return true;
+        try {
+            for (Document doc : dbr.getAll()) {
+                if (name.equals(doc.getName())) {
+                    document.add(doc);
+                    return true;
+                }
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return false;
     }
@@ -75,7 +80,7 @@ public class DocumentService {
 
         Collection<String> result = new LinkedHashSet<>();
         try {
-            for (Document document : db.getAll()) {
+            for (Document document : dbs.getAll()) {
                 String id = document.getId();
                 String path = Paths.get(System.getenv("UPLOAD_PATH")) + "\\" + id;
                 if (new File(path).exists()) {
@@ -97,7 +102,7 @@ public class DocumentService {
                 }
             }
             if (result.size() > 0) {
-                String newId = UUID.randomUUID().toString();
+                String newId = dbr.create(name);//теперь в БД новый id с новым именем для сооздания
                 String pathPublic = Paths.get(System.getenv("PUBLIC_PATH")) + "\\" + newId;
                 FileWriter fw = new FileWriter(pathPublic, true);
                 for (String string : result) {
@@ -106,7 +111,9 @@ public class DocumentService {
                 }
                 document.add(new Document(newId, name));
             } else {
-                document.add(new Document("0", name));
+                String zeroId = "0";
+                dbr.createEmpty(zeroId, name);
+                document.add(new Document(zeroId, name));
             }
 
         } catch (FileNotFoundException e) {
