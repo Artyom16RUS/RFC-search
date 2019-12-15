@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedHashSet;
+import java.util.UUID;
 
 public class DocumentService {
 
@@ -87,9 +88,7 @@ public class DocumentService {
                     BufferedReader bf = new BufferedReader(new InputStreamReader(new FileInputStream(path)));
                     ArrayList<String> subResult = new ArrayList<>();
                     subResult.add("[" + document.getName() + "]: ");
-
                     String line;
-
                     while ((line = bf.readLine()) != null) {
                         if (line.toLowerCase().contains(name.toLowerCase())) {
                             subResult.add(line);
@@ -101,27 +100,26 @@ public class DocumentService {
                     }
                 }
             }
+            String newId = "0";
             if (result.size() > 0) {
-                String newId = dbr.create(name);//теперь в БД новый id с новым именем для сооздания
+                System.out.println(" 4 ");
+                newId = UUID.randomUUID().toString();//теперь в БД новый id с новым именем для сооздания
                 String pathPublic = Paths.get(System.getenv("PUBLIC_PATH")) + "\\" + newId;
                 FileWriter fw = new FileWriter(pathPublic, true);
                 for (String string : result) {
                     fw.write(string);
                     fw.flush();
                 }
-                document.add(new Document(newId, name));
-            } else {
-                String zeroId = "0";
-                dbr.createEmpty(zeroId, name);
-                document.add(new Document(zeroId, name));
             }
+            dbr.create(newId, name);
+            document.add(new Document(newId, name));
 
         } catch (FileNotFoundException e) {
-//            e.printStackTrace();
+            e.printStackTrace();
         } catch (IOException e) {
-//            e.printStackTrace();
+            e.printStackTrace();
         } catch (SQLException e) {
-//            e.printStackTrace();
+            e.printStackTrace();
         }
 
         return document;
