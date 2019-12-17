@@ -20,7 +20,7 @@
     <div class="container">
         <div class="row">
             <div class="col" style="text-align: center">
-                <h1>Что то пошло нет так</h1>
+                <h1>Что-то пошло нет так</h1>
             </div>
         </div>
     </div>

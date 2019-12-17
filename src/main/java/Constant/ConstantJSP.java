@@ -1,7 +1,5 @@
 package Constant;
 
-import util.Constant;
-
 public class ConstantJSP {
 
     public static final String QUANTITY = "quantity"; //TODO rename

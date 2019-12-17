@@ -6,7 +6,6 @@ public class Constant {
     public static final String UPLOAD_PATH = "UPLOAD_PATH";
     public static final String PUBLIC_PATH = "PUBLIC_PATH";
 
-
     private Constant() {
     }
 

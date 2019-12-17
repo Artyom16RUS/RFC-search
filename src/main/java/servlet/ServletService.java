@@ -77,7 +77,7 @@ public class ServletService extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         if (req.getParameter("action").equals("save")) {
             try {
-                List<Part> fileParts = req.getParts() //TODO transfer in DocumentService
+                List<Part> fileParts = req.getParts()
                         .stream()
                         .filter(part -> "file".equals(part.getName()))
                         .collect(Collectors.toList());

@@ -26,7 +26,6 @@ public class DocumentService {
 
     public DocumentService() {
         updateCollection();
-//        String path = "java:/comp/env/jdbc/db";
         try {
             dbs = new DataBaseSource(Constant.PATH);
             dbr = new DataBaseResult(Constant.PATH);
@@ -46,8 +45,6 @@ public class DocumentService {
     public int addFile(List<Part> fileParts, Path path) throws Exception {
         listNotAdded = new ArrayList<>();
         int quantity = 0;
-        boolean status = false;
-//        String format = ".txt";
 
         for (Part part : fileParts) {
             String name = Paths.get(part.getSubmittedFileName()).getFileName().toString();
@@ -57,9 +54,6 @@ public class DocumentService {
                 dbs.create(id, name);
                 writeDocument(id, part, path);
                 updateCollection();
-                status = true;
-            }
-            if (status){
                 quantity++;
             } else {
                 listNotAdded.add(name);
