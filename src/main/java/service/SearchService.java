@@ -4,6 +4,7 @@ import db.DataBaseResult;
 import db.DataBaseSource;
 import model.Document;
 import util.Generates;
+import Constant.Constant;
 
 import java.io.*;
 import java.nio.file.Paths;
@@ -37,7 +38,7 @@ public class SearchService implements Runnable {
         try {
             for (Document document : dbs.getAll()) {
                 String id = document.getId();
-                String path = Paths.get(System.getenv("UPLOAD_PATH")) + "\\" + id;
+                String path = Paths.get(System.getenv(Constant.UPLOAD_PATH)) + "\\" + id;
                 if (new File(path).exists()) {
                     BufferedReader bf = new BufferedReader(new InputStreamReader(new FileInputStream(path)));
                     ArrayList<String> subResult = new ArrayList<>();
@@ -57,7 +58,7 @@ public class SearchService implements Runnable {
             String newId;
             if (result.size() > 0) {
                 newId = Generates.createId();
-                String pathPublic = Paths.get(System.getenv("PUBLIC_PATH")) + "\\" + newId;
+                String pathPublic = Paths.get(System.getenv(Constant.PUBLIC_PATH)) + "\\" + newId;
                 FileWriter fw = new FileWriter(pathPublic, true);
                 for (String string : result) {
                     fw.write(string);

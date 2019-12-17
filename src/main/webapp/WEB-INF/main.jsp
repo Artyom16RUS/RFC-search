@@ -1,6 +1,8 @@
 <%@ page import="model.Document" %>
 <%@ page import="java.util.Collection" %>
 <%@ page import="java.io.Writer" %>
+<%@ page import="Constant.Constant" %>
+<%@ page import="Constant.ConstantJSP" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <% Part part; %>
 
@@ -33,20 +35,20 @@
 
     <form style="text-align: center">
         <ul>
-            <% if (request.getAttribute("statusAdd") != null) {%>
-                <% if(((Integer) request.getAttribute("statusAdd")) == 1) {%>
-                    <p>File added</p>
-                <%} if(((Integer) request.getAttribute("statusAdd")) > 1)  {%>
-                    <p>Files added</p>
+            <% if (request.getAttribute(ConstantJSP.QUANTITY) != null) {%>
+                <% if(((Integer) request.getAttribute(ConstantJSP.QUANTITY)) == 1) {%>
+                    <p>Фаил добавлен</p>
+                <%} if(((Integer) request.getAttribute(ConstantJSP.QUANTITY)) > 1)  {%>
+                    <p>Файлы добавлены</p>
                 <% } %>
             <%}%>
         </ul>
     </form>
     <form style="text-align: center">
         <ul>
-            <% if (request.getAttribute("statusNotAdd") != null) {%>
-                <% for (String item : (Collection<String>) request.getAttribute("statusNotAdd")) { %>
-                    <%= "File don't added: " + item  %>
+            <% if (request.getAttribute(ConstantJSP.STATUS_NOT_ADD) != null) {%>
+                <% for (String item : (Collection<String>) request.getAttribute(ConstantJSP.STATUS_NOT_ADD)) { %>
+                    Файлы не добавлены: <%= item  %>
                 <% } %>
             <%}%>
         </ul>

@@ -4,18 +4,17 @@ import db.DataBaseResult;
 import db.DataBaseSource;
 import model.Document;
 import util.Generates;
+import Constant.Constant;
 
 import javax.naming.NamingException;
 import javax.servlet.http.Part;
 import java.io.*;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.concurrent.ExecutionException;
+import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
 
 
 public class DocumentService {
@@ -23,13 +22,14 @@ public class DocumentService {
     private Collection<Document> document;
     private DataBaseSource dbs;
     private DataBaseResult dbr;
+    private Collection<String> listNotAdded;
 
     public DocumentService() {
         updateCollection();
-        String path = "java:/comp/env/jdbc/db";
+//        String path = "java:/comp/env/jdbc/db";
         try {
-            dbs = new DataBaseSource(path);
-            dbr = new DataBaseResult(path);
+            dbs = new DataBaseSource(Constant.PATH);
+            dbr = new DataBaseResult(Constant.PATH);
         } catch (NamingException | SQLException e) {
             e.printStackTrace();
         }
@@ -39,18 +39,33 @@ public class DocumentService {
         document = new ArrayList<>();
     }
 
-    public boolean addFile(String name, Part part, Path path) throws Exception {
+    public Collection<String> getListNotAdded() {
+        return listNotAdded;
+    }
+
+    public int addFile(List<Part> fileParts, Path path) throws Exception {
+        listNotAdded = new ArrayList<>();
+        int quantity = 0;
         boolean status = false;
-        String format = ".txt";
-        int lineLength = name.length() - format.length();
-        if (name.substring(lineLength).equals(format)) {
-            String id = Generates.createId();
-            dbs.create(id, name);
-            writeDocument(id, part, path);
-            status = true;
-            updateCollection();
+//        String format = ".txt";
+
+        for (Part part : fileParts) {
+            String name = Paths.get(part.getSubmittedFileName()).getFileName().toString();
+            int lineLength = name.length() - Constant.FORMAT.length();
+            if (name.substring(lineLength).equals(Constant.FORMAT)) {
+                String id = Generates.createId();
+                dbs.create(id, name);
+                writeDocument(id, part, path);
+                updateCollection();
+                status = true;
+            }
+            if (status){
+                quantity++;
+            } else {
+                listNotAdded.add(name);
+            }
         }
-        return status;
+        return quantity;
     }
 
     private void writeDocument(String id, Part part, Path path) { //22.42s recording speed HDD vs 35.10s Web download => 12.68s application speed

@@ -1,5 +1,7 @@
 <%@ page import="model.Document" %>
 <%@ page import="java.util.Collection" %>
+<%@ page import="Constant.Constant" %>
+<%@ page import="Constant.ConstantJSP" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!doctype html>
 <html lang="en">
@@ -48,8 +50,8 @@
 <jsp:include page="search.jsp"/>
 
 <ul>
-    <% if (request.getAttribute("catalog") != null) {%>
-        <% for (Document item : (Collection<Document>) request.getAttribute("catalog")) { %>
+    <% if (request.getAttribute(ConstantJSP.CATALOG) != null) {%>
+        <% for (Document item : (Collection<Document>) request.getAttribute(ConstantJSP.CATALOG)) { %>
         <table cellspacing="0">
             <tr>
 
@@ -65,7 +67,7 @@
                     <%= item.getName() %>
                 </td>
                 <td class="even">
-                    <a>Not found</a>
+                    <a>Не найдено</a>
                 </td>
                 <%}%>
             </tr>
