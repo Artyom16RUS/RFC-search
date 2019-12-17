@@ -77,7 +77,7 @@ public class ServletService extends HttpServlet {
                         .stream()
                         .filter(part -> "file".equals(part.getName()))
                         .collect(Collectors.toList());
-                for (Part part : fileParts) { //TODO compare to speed HDD
+                for (Part part : fileParts) {
                     String name = Paths.get(part.getSubmittedFileName()).getFileName().toString();
                     boolean status = documentService.addFile(name, part, uploadPath);
                     if (status) {

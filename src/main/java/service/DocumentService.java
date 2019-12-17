@@ -12,6 +12,10 @@ import java.nio.file.Path;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 
 public class DocumentService {
@@ -49,7 +53,7 @@ public class DocumentService {
         return status;
     }
 
-    private void writeDocument(String id, Part part, Path path) {
+    private void writeDocument(String id, Part part, Path path) { //22.42s recording speed HDD vs 35.10s Web download => 12.68s application speed
         try {
             part.write(path.resolve(id).toString());
             part.delete();
@@ -59,7 +63,12 @@ public class DocumentService {
     }
 
     public Collection<Document> searchByName(String name) {
-        new Thread(new SearchService(document, dbs, dbr, name)).start();
+
+        ExecutorService service = Executors.newFixedThreadPool(Generates.getNumberCores());
+//        ExecutorService service = Executors.newCachedThreadPool();
+        service.execute(new SearchService(document, dbs, dbr, name));
+        service.shutdown();
+//        new Thread(new SearchService(document, dbs, dbr, name)).start();
         return document;
     }
 }

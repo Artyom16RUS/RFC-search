@@ -18,14 +18,12 @@ public class SearchService implements Runnable {
     private DataBaseSource dbs;
     private DataBaseResult dbr;
     private String name;
-    private static int currentThread = 0;
 
     public SearchService(Collection<Document> document, DataBaseSource dbs, DataBaseResult dbr, String name) {
         this.document = document;
         this.dbs = dbs;
         this.dbr = dbr;
         this.name = name;
-
     }
 
        @Override
