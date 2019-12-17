@@ -7,7 +7,14 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>RFC Searcher</title>
-
+    <style>
+        div {
+            padding: 5px; /* Поля вокруг текста */
+            margin-top: 1%; /* Отступ сверху */
+            margin-bottom: 1%;
+        }
+    </style>
+    <jsp:include page="style.jsp" />
 </head>
 <body>
     <div class="container">
@@ -18,5 +25,12 @@
         </div>
     </div>
 </body>
+
+<div>
+    <form style="text-align: center" action="<%= request.getContextPath() %>/" method="post">
+        <input type="hidden" name="action" value="return">
+        <input type="submit" value="RFC Searcher"/>
+    </form>
+</div>
 </html>
 

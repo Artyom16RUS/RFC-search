@@ -63,17 +63,21 @@ public class ServletService extends HttpServlet {
             }
             return;
         }
+        quantity = 0;
         req.getRequestDispatcher("/WEB-INF/main.jsp").forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        req.setCharacterEncoding("UTF-8");
         if (req.getParameter("action").equals("save")) {
             notAdded = new ArrayList<>();
             try {
-                List<Part> fileParts = req.getParts().stream().filter(part -> "file".equals(part.getName())).collect(Collectors.toList());//множественное добавлнение
-                for (Part part : fileParts) {
+                List<Part> fileParts = req.getParts() //TODO transfer in DocumentService
+                        .stream()
+                        .filter(part -> "file".equals(part.getName()))
+                        .collect(Collectors.toList());
+                for (Part part : fileParts) { //TODO compare to speed HDD
                     String name = Paths.get(part.getSubmittedFileName()).getFileName().toString();
                     boolean status = documentService.addFile(name, part, uploadPath);
                     if (status) {

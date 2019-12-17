@@ -4,11 +4,9 @@ public class Document {
     private String id;
     private String name;
 
-
     public Document(String id, String name) {
         this.id = id;
         this.name = name;
-
     }
 
     public String getId() {
@@ -18,7 +16,4 @@ public class Document {
     public String getName() {
         return name;
     }
-
-
-
 }

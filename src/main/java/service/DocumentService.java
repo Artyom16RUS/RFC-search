@@ -3,6 +3,7 @@ package service;
 import db.DataBaseResult;
 import db.DataBaseSource;
 import model.Document;
+import util.Generates;
 
 import javax.naming.NamingException;
 import javax.servlet.http.Part;
@@ -11,25 +12,21 @@ import java.nio.file.Path;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.UUID;
 
 
 public class DocumentService {
 
     private Collection<Document> document;
-
     private DataBaseSource dbs;
     private DataBaseResult dbr;
 
     public DocumentService() {
-
         updateCollection();
+        String path = "java:/comp/env/jdbc/db";
         try {
-            dbs = new DataBaseSource();
-            dbr = new DataBaseResult();
-        } catch (NamingException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
+            dbs = new DataBaseSource(path);
+            dbr = new DataBaseResult(path);
+        } catch (NamingException | SQLException e) {
             e.printStackTrace();
         }
     }
@@ -43,7 +40,7 @@ public class DocumentService {
         String format = ".txt";
         int lineLength = name.length() - format.length();
         if (name.substring(lineLength).equals(format)) {
-            String id = UUID.randomUUID().toString();
+            String id = Generates.createId();
             dbs.create(id, name);
             writeDocument(id, part, path);
             status = true;
@@ -62,10 +59,7 @@ public class DocumentService {
     }
 
     public Collection<Document> searchByName(String name) {
-
         new Thread(new SearchService(document, dbs, dbr, name)).start();
-//        int core = Runtime.getRuntime().availableProcessors();
-//        Executors.newFixedThreadPool(core).execute(new SearchService(document, dbs, dbr, name));
         return document;
     }
 }

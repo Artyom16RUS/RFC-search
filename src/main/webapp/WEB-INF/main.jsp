@@ -14,8 +14,6 @@
     <title>RFC Searcher</title>
     <style>
         div {
-            /*background: #fc3; !* Цвет фона *!*/
-            /*border: 2px solid black; !* Параметры рамки *!*/
             padding: 40px; /* Поля вокруг текста */
             margin-top: 10%; /* Отступ сверху */
         }

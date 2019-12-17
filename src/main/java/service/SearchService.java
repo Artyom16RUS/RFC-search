@@ -3,6 +3,7 @@ package service;
 import db.DataBaseResult;
 import db.DataBaseSource;
 import model.Document;
+import util.Generates;
 
 import java.io.*;
 import java.nio.file.Paths;
@@ -10,7 +11,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedHashSet;
-import java.util.UUID;
 
 public class SearchService implements Runnable {
 
@@ -18,15 +18,17 @@ public class SearchService implements Runnable {
     private DataBaseSource dbs;
     private DataBaseResult dbr;
     private String name;
+    private static int currentThread = 0;
 
     public SearchService(Collection<Document> document, DataBaseSource dbs, DataBaseResult dbr, String name) {
         this.document = document;
         this.dbs = dbs;
         this.dbr = dbr;
         this.name = name;
+
     }
 
-    @Override
+       @Override
     public void run() {
 
         if (replay(name)) {
@@ -43,7 +45,7 @@ public class SearchService implements Runnable {
                     ArrayList<String> subResult = new ArrayList<>();
                     subResult.add("[" + document.getName() + "]: ");
                     String line;
-                    while ((line = bf.readLine()) != null) {
+                    while ((line = bf.readLine()) != null) { //TODO make compact
                         if (line.toLowerCase().contains(name.toLowerCase())) {
                             subResult.add(line);
                         }
@@ -54,24 +56,21 @@ public class SearchService implements Runnable {
                     }
                 }
             }
-            String newId = "0";
+            String newId;
             if (result.size() > 0) {
-                newId = UUID.randomUUID().toString();
+                newId = Generates.createId();
                 String pathPublic = Paths.get(System.getenv("PUBLIC_PATH")) + "\\" + newId;
                 FileWriter fw = new FileWriter(pathPublic, true);
                 for (String string : result) {
                     fw.write(string);
                     fw.flush();
                 }
+            } else {
+                newId = Generates.createIdZero();
             }
             dbr.create(newId, name);
             getDocument().add(new Document(newId, name));
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
+        } catch (IOException | SQLException e) {
             e.printStackTrace();
         }
 
@@ -91,7 +90,7 @@ public class SearchService implements Runnable {
         return false;
     }
 
-    public synchronized Collection<Document> getDocument() {
+    private synchronized Collection<Document> getDocument() {
         return document;
     }
 }
