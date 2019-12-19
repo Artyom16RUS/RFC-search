@@ -37,6 +37,7 @@ public class DocumentService {
 
     private void updateCollection() {
         document = new ArrayList<>();
+        System.out.println("replay" + document.size());
     }
 
     public Collection<String> getListNotAdded() {
@@ -52,7 +53,7 @@ public class DocumentService {
         quantity = 0;
 
         for (Part part : fileParts) {
-            String name = Paths.get(part.getSubmittedFileName()).getFileName().toString(); //part.getSubmittedFileName()??
+            String name = part.getSubmittedFileName();
             int lineLength = name.length() - Constant.FORMAT.length();
             if (name.substring(lineLength).equals(Constant.FORMAT)) {
                 String id = Generates.createId();
