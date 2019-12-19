@@ -27,7 +27,7 @@
 </body>
 
 <div>
-    <form style="text-align: center" action="<%= request.getContextPath() %>/" method="post">
+    <form style="text-align: center" action="<%= request.getContextPath() %>/" method="get">
         <input type="hidden" name="action" value="return">
         <input type="submit" value="RFC Searcher"/>
     </form>

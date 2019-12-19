@@ -47,7 +47,7 @@ public class DocumentService {
         int quantity = 0;
 
         for (Part part : fileParts) {
-            String name = Paths.get(part.getSubmittedFileName()).getFileName().toString();
+            String name = Paths.get(part.getSubmittedFileName()).getFileName().toString(); //part.getSubmittedFileName()??
             int lineLength = name.length() - Constant.FORMAT.length();
             if (name.substring(lineLength).equals(Constant.FORMAT)) {
                 String id = Generates.createId();
@@ -72,12 +72,9 @@ public class DocumentService {
     }
 
     public Collection<Document> searchByName(String name) {
-
         ExecutorService service = Executors.newFixedThreadPool(Generates.getNumberCores());
-//        ExecutorService service = Executors.newCachedThreadPool();
         service.execute(new SearchService(document, dbs, dbr, name));
         service.shutdown();
-//        new Thread(new SearchService(document, dbs, dbr, name)).start();
         return document;
     }
 }

@@ -4,7 +4,7 @@ import db.DataBaseResult;
 import db.DataBaseSource;
 import model.Document;
 import util.Generates;
-import Constant.Constant;
+import util.PathUtil;
 
 import java.io.*;
 import java.nio.file.Paths;
@@ -27,7 +27,7 @@ public class SearchService implements Runnable {
         this.name = name;
     }
 
-       @Override
+    @Override
     public void run() {
 
         if (replay(name)) {
@@ -37,14 +37,13 @@ public class SearchService implements Runnable {
         Collection<String> result = new LinkedHashSet<>();
         try {
             for (Document document : dbs.getAll()) {
-                String id = document.getId();
-                String path = Paths.get(System.getenv(Constant.UPLOAD_PATH)) + "\\" + id;
+                String path = Paths.get(PathUtil.getUploadPathUri()) + File.separator + document.getId();
                 if (new File(path).exists()) {
                     BufferedReader bf = new BufferedReader(new InputStreamReader(new FileInputStream(path)));
                     ArrayList<String> subResult = new ArrayList<>();
                     subResult.add("[" + document.getName() + "]: ");
                     String line;
-                    while ((line = bf.readLine()) != null) { //TODO make compact
+                    while ((line = bf.readLine()) != null) {
                         if (line.toLowerCase().contains(name.toLowerCase())) {
                             subResult.add(line);
                         }
@@ -58,7 +57,7 @@ public class SearchService implements Runnable {
             String newId;
             if (result.size() > 0) {
                 newId = Generates.createId();
-                String pathPublic = Paths.get(System.getenv(Constant.PUBLIC_PATH)) + "\\" + newId;
+                String pathPublic = PathUtil.getPublicPathUri() + File.separator + newId;
                 FileWriter fw = new FileWriter(pathPublic, true);
                 for (String string : result) {
                     fw.write(string);

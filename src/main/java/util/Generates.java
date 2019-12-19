@@ -7,7 +7,7 @@ public class Generates {
     }
 
     public static int getNumberCores() {
-        return Runtime.getRuntime().availableProcessors() - 1;
+        return Runtime.getRuntime().availableProcessors();
     }
 
     public static String createId() {

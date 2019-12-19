@@ -27,7 +27,7 @@
     <jsp:include page="search.jsp" />
 
 
-    <form style="text-align: center" action="<%= request.getContextPath() %>/" method="post" enctype="multipart/form-data">
+    <form style="text-align: center" action="<%= request.getContextPath() %>/upload" method="post" enctype="multipart/form-data">
         <input type="hidden" name="action" value="save">
         <input type="file" name="file" accept=".txt" multiple required>
         <input type="submit" value="Добавить"/>
