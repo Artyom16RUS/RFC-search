@@ -37,7 +37,6 @@ public class DocumentService {
 
     private void updateCollection() {
         document = new ArrayList<>();
-        System.out.println("replay" + document.size());
     }
 
     public Collection<String> getListNotAdded() {

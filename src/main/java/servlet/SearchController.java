@@ -31,7 +31,6 @@ public class SearchController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setAttribute(ConstantJSP.CATALOG, documents);
         req.getRequestDispatcher("/WEB-INF/result.jsp").forward(req, resp);
-
     }
 
     @Override
@@ -39,7 +38,6 @@ public class SearchController extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         String text = req.getParameter("search");
         documents = documentService.searchByName(text);
-        System.out.println(documents.size());
         resp.sendRedirect(req.getRequestURI());
     }
 }

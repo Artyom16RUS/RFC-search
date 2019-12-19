@@ -20,7 +20,6 @@ public class DownloadController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-
         String id = req.getPathInfo().substring(1);
         Path path = publicPath.resolve(id);
         if (Files.exists(path)) {
