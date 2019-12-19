@@ -7,8 +7,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="07dc917a-896e-40a4-8770-b4a549415ad6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Procfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/system.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -92,6 +90,7 @@
       <recent name="servlet" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\U4eba\Java\OtherWork\Diplom_V2" />
       <recent name="D:\U4eba\Java\OtherWork\Diplom\src\main\webapp\WEB-INF" />
       <recent name="D:\U4eba\Java\OtherWork\Diplom\src\main\java\util" />
     </key>
@@ -468,7 +467,7 @@
       <workItem from="1576681937827" duration="183000" />
       <workItem from="1576682359254" duration="6763000" />
       <workItem from="1576776768607" duration="11670000" />
-      <workItem from="1576795139777" duration="358000" />
+      <workItem from="1576795139777" duration="613000" />
     </task>
     <task id="LOCAL-00001" summary="Start">
       <created>1575136874501</created>
@@ -708,7 +707,14 @@
       <option name="project" value="LOCAL" />
       <updated>1576795236049</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="Added system.properties and Procfile">
+      <created>1576795588016</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1576795588016</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -728,7 +734,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Method write" />
     <MESSAGE value="Method write update" />
     <MESSAGE value="Added in text \n" />
     <MESSAGE value="Stage one" />
@@ -753,7 +758,8 @@
     <MESSAGE value="MVC refactor" />
     <MESSAGE value="Completion" />
     <MESSAGE value="WORK" />
-    <option name="LAST_COMMIT_MESSAGE" value="WORK" />
+    <MESSAGE value="Added system.properties and Procfile" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added system.properties and Procfile" />
   </component>
   <component name="WindowStateProjectService">
     <state x="743" y="374" key="#BuildArtifactsBeforeRunChooser" timestamp="1576777869466">
@@ -836,10 +842,10 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="937" y="179" key="#xdebugger.evaluate/0.0.1440.900@0.0.1440.900" timestamp="1576689465190" />
-    <state x="1070" y="194" key="CommitChangelistDialog2" timestamp="1576795235333">
+    <state x="1070" y="194" key="CommitChangelistDialog2" timestamp="1576795587641">
       <screen x="0" y="44" width="1920" height="1036" />
     </state>
-    <state x="1070" y="194" key="CommitChangelistDialog2/0.44.1920.1036@0.44.1920.1036" timestamp="1576795235333" />
+    <state x="1070" y="194" key="CommitChangelistDialog2/0.44.1920.1036@0.44.1920.1036" timestamp="1576795587641" />
     <state x="96" y="140" width="1728" height="844" key="DiffContextDialog" timestamp="1576610319116">
       <screen x="0" y="44" width="1920" height="1036" />
     </state>
@@ -960,10 +966,10 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="958" height="244" key="GridCell.Tab.7.right/0.0.1440.900@0.0.1440.900" timestamp="1576685185478" />
-    <state x="556" y="302" key="Vcs.Push.Dialog.v2" timestamp="1576795239447">
+    <state x="556" y="302" key="Vcs.Push.Dialog.v2" timestamp="1576795712730">
       <screen x="0" y="44" width="1920" height="1036" />
     </state>
-    <state x="556" y="302" key="Vcs.Push.Dialog.v2/0.44.1920.1036@0.44.1920.1036" timestamp="1576795239447" />
+    <state x="556" y="302" key="Vcs.Push.Dialog.v2/0.44.1920.1036@0.44.1920.1036" timestamp="1576795712730" />
     <state x="789" y="487" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1576784500112">
       <screen x="0" y="44" width="1920" height="1036" />
     </state>
