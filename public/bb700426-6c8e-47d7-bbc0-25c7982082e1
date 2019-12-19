@@ -1,0 +1,33 @@
+[rfc12.txt]: 
+Network Working Group                                       M. Wingfield
+Request for Comments: 12  REVISED                         26 August 1969
+                    IMP-HOST INTERFACE FLOW DIAGRAMS
+   The following flow diagrams were extracted from the logic diagrams
+   provided in Appendix B of BBN Report No. 1822.  These diagrams
+   indicate the logical sequence of hardware operations which occur
+   within the IMP-HOST interface.  The logic names appearing in the
+   blocks correspond to the logic elements found in Appendix B.
+Wingfield                                                       [Page 1]
+RFC 12              IMP-HOST INTERFACE FLOW DIAGRAMS      26 August 1969
+                      | RFNIB <-- 1  |
+                |    PULSE SHIFT REG.   |       +---+
+                |      RFNTR <-- 0      |       +---+
+Wingfield                                                       [Page 2]
+RFC 12              IMP-HOST INTERFACE FLOW DIAGRAMS      26 August 1969
+                        / LAST = 1\----------->|   END  OF  |
+Wingfield                                                       [Page 3]
+RFC 12              IMP-HOST INTERFACE FLOW DIAGRAMS      26 August 1969
+       |     CLEAR SHIFT REG.   |
+      |  LOAD SHIFT  REGISTER   |
+      |N     / RFNBIT  \
+         |  THERE'S YOUR   |----------->/ RFNBIT  \
+Wingfield                                                       [Page 4]
+RFC 12              IMP-HOST INTERFACE FLOW DIAGRAMS      26 August 1969
+           |            | PUSH SHIFT REG. |
+      \   = 1   /--------------------------->|   END OF    |
+         [ This RFC was put into machine readable form for entry ]
+             [ into the online RFC archives by Lorrie Shiota]
+Wingfield                                                       [Page 5]
+RFC 12              IMP-HOST INTERFACE FLOW DIAGRAMS      26 August 1969
+Wingfield                                                       [Page 6]
+

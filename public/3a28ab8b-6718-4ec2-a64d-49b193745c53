@@ -1,0 +1,54 @@
+[rfc12.txt]: 
+Request for Comments: 12  REVISED                         26 August 1969
+                    IMP-HOST INTERFACE FLOW DIAGRAMS
+   The following flow diagrams were extracted from the logic diagrams
+   provided in Appendix B of BBN Report No. 1822.  These diagrams
+   indicate the logical sequence of hardware operations which occur
+   within the IMP-HOST interface.  The logic names appearing in the
+   blocks correspond to the logic elements found in Appendix B.
+RFC 12              IMP-HOST INTERFACE FLOW DIAGRAMS      26 August 1969
+IMP to HOST Message
+                       |  Start   |
+                 | LAST <--0; IMPERR <--0 |
+                 | PAD <--0; IN REQST <--0|
+                        / THERE'S \ N        |
+   +-----------+   Y    /  LAST   \
+                |    PULSE SHIFT REG.   |       +---+
+RFC 12              IMP-HOST INTERFACE FLOW DIAGRAMS      26 August 1969
+      | B |       |     INREQST <--1     |
+                        /HAS BEEN \_N_____|
+                  |    INREQST <--0      |
+                        / LAST = 1\----------->|   END  OF  |
+                        \    ?    /            |   MESSAGE  |
+RFC 12              IMP-HOST INTERFACE FLOW DIAGRAMS      26 August 1969
+HOST TO IMP MESSAGE
+            | START OUTPUT |
+       | LSTWD <--0; BTAVL <--0 |
+       |    OUT REQST <-- 1     |
+       |     CLEAR SHIFT REG.   |
+     |_______ / STROBE  \
+      |  LOAD SHIFT  REGISTER   |
+      |  OUTREQST <-- 0         |
+         |  THERE'S YOUR   |----------->/ RFNBIT  \
+         | HOST BET <-- 1  |            \  = 0    /
+RFC 12              IMP-HOST INTERFACE FLOW DIAGRAMS      26 August 1969
+                  | THERE'S YOUR HOST BIT <--0 |
+                            /LENGTH -1\---------->/  LSTWD  \---+
+           |            | PUSH SHIFT REG. |
+      /  LSTWD  \ Y                          +-------------+
+        \  ?  /                              |   MESSAGE   |
+         [ This RFC was put into machine readable form for entry ]
+             [ into the online RFC archives by Lorrie Shiota]
+RFC 12              IMP-HOST INTERFACE FLOW DIAGRAMS      26 August 1969
+
+[rfc16.txt]: 
+Network Working Group                                    Steve Crocker
+Request for Comments:  16                                27 August 1969
+M.I.T. is now to receive all Network Working Group memos.  Memos should
+be addressed to:
+                         Abhai Bhushan
+                         545 Technology Square
+                         Cambridge, Mass. 02139
+Abhai's phone is (617) 864-6900, X 5857.
+[This RFC has been restored to on-line status by Walter Pienciak]
+

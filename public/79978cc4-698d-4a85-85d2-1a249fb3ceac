@@ -1,0 +1,11 @@
+[rfc13.txt]: 
+Network Working Group                                          Vint Cerf
+                                                          20 August 1969
+Referring to NWG/RFC: 11, it appears that file transmissions over
+FILE."  It is proposed that a length 0 (zero) message be used for this
+purpose.  Figure 1 shows the format:
+|    leader     |    marking    |    checksum     |    padding    |
+                                Figure 1
+                      Zero Text Length EOF Message
+                                                                [Page 1]
+

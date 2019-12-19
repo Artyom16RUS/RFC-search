@@ -1,0 +1,74 @@
+POST http://localhost:8080/search
+Content-Type: application/x-www-form-urlencoded
+
+id=99&content=new-element
+
+<> 2019-12-18T120037.500.html
+
+###
+
+GET http://localhost:8080
+Accept: application/json
+
+<> 2019-12-17T115933.200.html
+
+###
+
+POST http://localhost:8080
+Content-Type: application/x-www-form-urlencoded
+
+id=99&content=new-element
+
+<> 2019-12-17T115848.500.html
+
+###
+
+POST http://localhost:8080
+Content-Type: application/x-www-form-urlencoded
+
+id=99&content=new-element
+
+###
+
+POST http://localhost:8080
+Content-Type: application/x-www-form-urlencoded
+
+id=99&content=new-element
+
+###
+
+GET http://localhost:8080
+Accept: application/json
+
+###
+
+POST http://localhost:8080
+Content-Type: application/x-www-form-urlencoded
+
+id=99&content=new-element
+
+###
+
+GET http://localhost:8080
+Accept: application/json
+
+<> 2019-12-03T125523.200.html
+
+###
+
+GET http://localhost:8080
+Accept: application/json
+
+<> 2019-12-03T112101.200.html
+
+###
+
+POST http://localhost:8080
+Content-Type: application/x-www-form-urlencoded
+
+id=99&content=new-element
+
+<> 2019-12-03T112030.500.html
+
+###
+

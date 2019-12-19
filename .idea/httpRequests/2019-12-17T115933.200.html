@@ -1,0 +1,60 @@
+
+
+
+
+
+
+
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>RFC Searcher</title>
+    <style>
+        div {
+            padding: 40px; /* Поля вокруг текста */
+            margin-top: 10%; /* Отступ сверху */
+        }
+    </style>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+
+    
+
+<div>
+    <form style="text-align: center" action="/search" method="post">
+        <input type="hidden" name="action" value="search">
+        <input name="search" placeholder="Поиск" maxlength="50" type="text" required>
+        <input type="submit" value="Найти">
+    </form>
+</div>
+
+
+
+
+    <form style="text-align: center" action="/" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="action" value="save">
+        <input type="file" name="file" accept=".txt" multiple required>
+        <input type="submit" value="Добавить"/>
+    </form>
+
+    <form style="text-align: center">
+        <ul>
+            
+                
+            
+        </ul>
+    </form>
+    <form style="text-align: center">
+        <ul>
+            
+        </ul>
+    </form>
+
+    </body>
+</html>
