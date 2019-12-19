@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class DataBaseResult { //TODO Lection13 / 02. Rateil
+public class DataBaseResult {
     private final DataSource ds;
 
     public DataBaseResult(String path) throws NamingException, SQLException {

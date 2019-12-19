@@ -27,7 +27,6 @@ public class PathUtil {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         return path;
     }
 
@@ -41,7 +40,6 @@ public class PathUtil {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         return path;
     }
 }

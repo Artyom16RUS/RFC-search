@@ -71,7 +71,6 @@ public class SearchService implements Runnable {
         } catch (IOException | SQLException e) {
             e.printStackTrace();
         }
-
     }
 
     private boolean replay(String name) {

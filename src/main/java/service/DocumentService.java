@@ -23,6 +23,7 @@ public class DocumentService {
     private DataBaseSource dbs;
     private DataBaseResult dbr;
     private Collection<String> listNotAdded;
+    private int quantity;
 
     public DocumentService() {
         updateCollection();
@@ -42,9 +43,13 @@ public class DocumentService {
         return listNotAdded;
     }
 
-    public int addFile(List<Part> fileParts, Path path) throws Exception {
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void addFile(List<Part> fileParts, Path path) throws Exception {
         listNotAdded = new ArrayList<>();
-        int quantity = 0;
+        quantity = 0;
 
         for (Part part : fileParts) {
             String name = Paths.get(part.getSubmittedFileName()).getFileName().toString(); //part.getSubmittedFileName()??
@@ -59,7 +64,6 @@ public class DocumentService {
                 listNotAdded.add(name);
             }
         }
-        return quantity;
     }
 
     private void writeDocument(String id, Part part, Path path) { //22.42s recording speed HDD vs 35.10s Web download => 12.68s application speed
