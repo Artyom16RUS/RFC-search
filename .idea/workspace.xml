@@ -7,11 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="07dc917a-896e-40a4-8770-b4a549415ad6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_xerial_sqlite_jdbc_3_25_2.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/service/SearchService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/service/SearchService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/web-service-1.0/WEB-INF/classes/service/SearchService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/web-service-1.0/WEB-INF/classes/service/SearchService.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -484,34 +480,6 @@
       <workItem from="1576812010984" duration="747000" />
       <workItem from="1576855166707" duration="7083000" />
     </task>
-    <task id="LOCAL-00002" summary="Added context.xml and web.xml">
-      <created>1575137222959</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1575137222959</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Servlet getPost for ADD">
-      <created>1575312154233</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1575312154233</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Servlet added method search()">
-      <created>1575367227187</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1575367227187</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Servlet added searchPage.jsp">
-      <created>1575372252227</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1575372252227</updated>
-    </task>
     <task id="LOCAL-00006" summary="Servlet added GET /search">
       <created>1575375943677</created>
       <option name="number" value="00006" />
@@ -827,7 +795,35 @@
       <option name="project" value="LOCAL" />
       <updated>1576875006977</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="POM">
+      <created>1576875864670</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1576875864670</updated>
+    </task>
+    <task id="LOCAL-00052" summary="POM">
+      <created>1576875927118</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1576875927118</updated>
+    </task>
+    <task id="LOCAL-00053" summary="POM">
+      <created>1576875974569</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1576875974569</updated>
+    </task>
+    <task id="LOCAL-00054" summary="POM">
+      <created>1576876419723</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1576876419723</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -955,10 +951,10 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="937" y="179" key="#xdebugger.evaluate/0.0.1440.900@0.0.1440.900" timestamp="1576689465190" />
-    <state x="1070" y="194" key="CommitChangelistDialog2" timestamp="1576875903148">
+    <state x="1070" y="194" key="CommitChangelistDialog2" timestamp="1576876419495">
       <screen x="0" y="44" width="1920" height="1036" />
     </state>
-    <state x="1070" y="194" key="CommitChangelistDialog2/0.44.1920.1036@0.44.1920.1036" timestamp="1576875903148" />
+    <state x="1070" y="194" key="CommitChangelistDialog2/0.44.1920.1036@0.44.1920.1036" timestamp="1576876419495" />
     <state x="96" y="140" width="1728" height="844" key="DiffContextDialog" timestamp="1576873753832">
       <screen x="0" y="44" width="1920" height="1036" />
     </state>
@@ -1087,10 +1083,10 @@
       <screen x="0" y="44" width="1920" height="1036" />
     </state>
     <state x="444" y="144" key="SettingsEditor/0.44.1920.1036@0.44.1920.1036" timestamp="1576867923873" />
-    <state x="556" y="302" key="Vcs.Push.Dialog.v2" timestamp="1576875016261">
+    <state x="556" y="302" key="Vcs.Push.Dialog.v2" timestamp="1576876423053">
       <screen x="0" y="44" width="1920" height="1036" />
     </state>
-    <state x="556" y="302" key="Vcs.Push.Dialog.v2/0.44.1920.1036@0.44.1920.1036" timestamp="1576875016261" />
+    <state x="556" y="302" key="Vcs.Push.Dialog.v2/0.44.1920.1036@0.44.1920.1036" timestamp="1576876423053" />
     <state x="789" y="487" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1576784500112">
       <screen x="0" y="44" width="1920" height="1036" />
     </state>
