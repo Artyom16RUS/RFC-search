@@ -14,12 +14,12 @@ public class PathUtil {
         return System.getProperty(UPLOAD_PATH);
     }
 
-    public static String getPublicPathUri(){
+    public static String getDownloadPathUri(){
         return System.getProperty(DOWNLOAD_PATH);
     }
 
     public static Path getDownloadPath(){
-        Path path = Paths.get(PathUtil.getPublicPathUri());
+        Path path = Paths.get(PathUtil.getDownloadPathUri());
         try {
             if (Files.notExists(path)) {
                 Files.createDirectory(path);
