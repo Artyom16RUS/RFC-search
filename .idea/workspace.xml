@@ -6,11 +6,9 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="07dc917a-896e-40a4-8770-b4a549415ad6" name="Default Changelist" comment="changed files">
+    <list default="true" id="07dc917a-896e-40a4-8770-b4a549415ad6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/service/SearchService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/SearchService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/servlet/DownloadController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servlet/DownloadController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/util/PathUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/util/PathUtil.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -805,7 +803,14 @@
       <option name="project" value="LOCAL" />
       <updated>1576872211167</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="changed PATH">
+      <created>1576873830089</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1576873830089</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -825,7 +830,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Changed method addFile" />
     <MESSAGE value="Added status" />
     <MESSAGE value="Added status update" />
     <MESSAGE value="Added for result status" />
@@ -850,7 +854,8 @@
     <MESSAGE value="ArrayList to LinkedList" />
     <MESSAGE value="changed web.xml" />
     <MESSAGE value="changed files" />
-    <option name="LAST_COMMIT_MESSAGE" value="changed files" />
+    <MESSAGE value="changed PATH" />
+    <option name="LAST_COMMIT_MESSAGE" value="changed PATH" />
   </component>
   <component name="WindowStateProjectService">
     <state x="743" y="374" key="#BuildArtifactsBeforeRunChooser" timestamp="1576777869466">
@@ -933,10 +938,10 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="937" y="179" key="#xdebugger.evaluate/0.0.1440.900@0.0.1440.900" timestamp="1576689465190" />
-    <state x="1070" y="194" key="CommitChangelistDialog2" timestamp="1576873266116">
+    <state x="1070" y="194" key="CommitChangelistDialog2" timestamp="1576873829782">
       <screen x="0" y="44" width="1920" height="1036" />
     </state>
-    <state x="1070" y="194" key="CommitChangelistDialog2/0.44.1920.1036@0.44.1920.1036" timestamp="1576873266116" />
+    <state x="1070" y="194" key="CommitChangelistDialog2/0.44.1920.1036@0.44.1920.1036" timestamp="1576873829782" />
     <state x="96" y="140" width="1728" height="844" key="DiffContextDialog" timestamp="1576873753832">
       <screen x="0" y="44" width="1920" height="1036" />
     </state>
@@ -1065,10 +1070,10 @@
       <screen x="0" y="44" width="1920" height="1036" />
     </state>
     <state x="444" y="144" key="SettingsEditor/0.44.1920.1036@0.44.1920.1036" timestamp="1576867923873" />
-    <state x="556" y="302" key="Vcs.Push.Dialog.v2" timestamp="1576872216291">
+    <state x="556" y="302" key="Vcs.Push.Dialog.v2" timestamp="1576873832733">
       <screen x="0" y="44" width="1920" height="1036" />
     </state>
-    <state x="556" y="302" key="Vcs.Push.Dialog.v2/0.44.1920.1036@0.44.1920.1036" timestamp="1576872216291" />
+    <state x="556" y="302" key="Vcs.Push.Dialog.v2/0.44.1920.1036@0.44.1920.1036" timestamp="1576873832733" />
     <state x="789" y="487" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1576784500112">
       <screen x="0" y="44" width="1920" height="1036" />
     </state>

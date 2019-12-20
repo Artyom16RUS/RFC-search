@@ -37,7 +37,6 @@ public class SearchService implements Runnable {
         Collection<String> result = new LinkedHashSet<>();
         try {
             for (Document document : dbs.getAll()) {
-//                String path = Paths.get(PathUtil.getUploadPathUri()) + File.separator + document.getId();
                 String path = PathUtil.getUploadPath() + "\\" + document.getId();
                 if (new File(path).exists()) {
                     BufferedReader bf = new BufferedReader(new InputStreamReader(new FileInputStream(path)));
