@@ -11,17 +11,17 @@ import java.nio.file.Path;
 
 public class DownloadController extends HttpServlet {
 
-    private Path publicPath;
+    private Path downloadPath;
 
     @Override
     public void init() {
-        publicPath = PathUtil.getDownloadPath();
+        downloadPath = PathUtil.getDownloadPath();
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String id = req.getPathInfo().substring(1);
-        Path path = publicPath.resolve(id);
+        Path path = downloadPath.resolve(id);
         if (Files.exists(path)) {
             Files.copy(path, resp.getOutputStream());
         }

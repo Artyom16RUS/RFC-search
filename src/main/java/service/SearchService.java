@@ -37,7 +37,8 @@ public class SearchService implements Runnable {
         Collection<String> result = new LinkedHashSet<>();
         try {
             for (Document document : dbs.getAll()) {
-                String path = Paths.get(PathUtil.getUploadPathUri()) + File.separator + document.getId();
+//                String path = Paths.get(PathUtil.getUploadPathUri()) + File.separator + document.getId();
+                String path = PathUtil.getUploadPath() + "\\" + document.getId();
                 if (new File(path).exists()) {
                     BufferedReader bf = new BufferedReader(new InputStreamReader(new FileInputStream(path)));
                     LinkedList<String> subResult = new LinkedList<>();
@@ -58,7 +59,7 @@ public class SearchService implements Runnable {
             String newId;
             if (result.size() > 0) {
                 newId = Generates.createId();
-                String pathPublic = PathUtil.getDownloadPathUri() + File.separator + newId;
+                String pathPublic = PathUtil.getDownloadPath() + "\\" + newId;
                 FileWriter fw = new FileWriter(pathPublic, true);
                 for (String string : result) {
                     fw.write(string);

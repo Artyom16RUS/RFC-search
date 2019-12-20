@@ -11,11 +11,11 @@ public class PathUtil {
     private static final String DOWNLOAD_PATH = "DOWNLOAD_PATH";
 
     public static String getUploadPathUri(){
-        return System.getProperty(UPLOAD_PATH);
+        return System.getenv(UPLOAD_PATH);
     }
 
     public static String getDownloadPathUri(){
-        return System.getProperty(DOWNLOAD_PATH);
+        return System.getenv(DOWNLOAD_PATH);
     }
 
     public static Path getDownloadPath(){
