@@ -7,7 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="07dc917a-896e-40a4-8770-b4a549415ad6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -469,7 +469,7 @@
       <workItem from="1576776768607" duration="11670000" />
       <workItem from="1576795139777" duration="902000" />
       <workItem from="1576812010984" duration="747000" />
-      <workItem from="1576855166707" duration="7083000" />
+      <workItem from="1576855166707" duration="7616000" />
     </task>
     <task id="LOCAL-00001" summary="Start">
       <created>1575136874501</created>
@@ -758,7 +758,14 @@
       <option name="project" value="LOCAL" />
       <updated>1576862931350</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="changed web.xml">
+      <created>1576863334106</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1576863334106</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -886,10 +893,10 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="937" y="179" key="#xdebugger.evaluate/0.0.1440.900@0.0.1440.900" timestamp="1576689465190" />
-    <state x="1070" y="194" key="CommitChangelistDialog2" timestamp="1576862930987">
+    <state x="1070" y="194" key="CommitChangelistDialog2" timestamp="1576863333857">
       <screen x="0" y="44" width="1920" height="1036" />
     </state>
-    <state x="1070" y="194" key="CommitChangelistDialog2/0.44.1920.1036@0.44.1920.1036" timestamp="1576862930987" />
+    <state x="1070" y="194" key="CommitChangelistDialog2/0.44.1920.1036@0.44.1920.1036" timestamp="1576863333857" />
     <state x="96" y="140" width="1728" height="844" key="DiffContextDialog" timestamp="1576610319116">
       <screen x="0" y="44" width="1920" height="1036" />
     </state>
@@ -1010,10 +1017,10 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="958" height="244" key="GridCell.Tab.7.right/0.0.1440.900@0.0.1440.900" timestamp="1576685185478" />
-    <state x="556" y="302" key="Vcs.Push.Dialog.v2" timestamp="1576861006839">
+    <state x="556" y="302" key="Vcs.Push.Dialog.v2" timestamp="1576863338317">
       <screen x="0" y="44" width="1920" height="1036" />
     </state>
-    <state x="556" y="302" key="Vcs.Push.Dialog.v2/0.44.1920.1036@0.44.1920.1036" timestamp="1576861006839" />
+    <state x="556" y="302" key="Vcs.Push.Dialog.v2/0.44.1920.1036@0.44.1920.1036" timestamp="1576863338317" />
     <state x="789" y="487" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1576784500112">
       <screen x="0" y="44" width="1920" height="1036" />
     </state>
