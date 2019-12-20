@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/Artyom16RUS/RFC-searcher.svg?branch=master)](https://travis-ci.org/Artyom16RUS/RFC-searcher)
+[![Build Status](https://travis-ci.org/Artyom16RUS/RFC-search.svg?branch=master)](https://travis-ci.org/Artyom16RUS/RFC-search)
 
 ### RFC-searcher
 
