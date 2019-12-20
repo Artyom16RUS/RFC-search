@@ -1,1 +1,1 @@
-web: UPLOAD_PATH=/upload DOWNLOAD_PATH=/download  java $JAVA_OPTS -cp 'target/dependency/*' webapp.runner.launch.Main --port $PORT target/*.war --enable-naming
+web: UPLOAD_PATH=/app/upload DOWNLOAD_PATH=/app/download  java $JAVA_OPTS -cp 'target/dependency/*' webapp.runner.launch.Main --port $PORT target/*.war --enable-naming

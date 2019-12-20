@@ -6,8 +6,10 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="07dc917a-896e-40a4-8770-b4a549415ad6" name="Default Changelist" comment="">
+    <list default="true" id="07dc917a-896e-40a4-8770-b4a549415ad6" name="Default Changelist" comment="changed files">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Procfile" beforeDir="false" afterPath="$PROJECT_DIR$/Procfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -779,7 +781,14 @@
       <option name="project" value="LOCAL" />
       <updated>1576868538084</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="changed files">
+      <created>1576871614128</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1576871614128</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -799,7 +808,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added page style.jsp" />
     <MESSAGE value="Changed method addFile" />
     <MESSAGE value="Added status" />
     <MESSAGE value="Added status update" />
@@ -824,7 +832,8 @@
     <MESSAGE value="JDK11" />
     <MESSAGE value="ArrayList to LinkedList" />
     <MESSAGE value="changed web.xml" />
-    <option name="LAST_COMMIT_MESSAGE" value="changed web.xml" />
+    <MESSAGE value="changed files" />
+    <option name="LAST_COMMIT_MESSAGE" value="changed files" />
   </component>
   <component name="WindowStateProjectService">
     <state x="743" y="374" key="#BuildArtifactsBeforeRunChooser" timestamp="1576777869466">
@@ -907,10 +916,10 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="937" y="179" key="#xdebugger.evaluate/0.0.1440.900@0.0.1440.900" timestamp="1576689465190" />
-    <state x="1070" y="194" key="CommitChangelistDialog2" timestamp="1576868537437">
+    <state x="1070" y="194" key="CommitChangelistDialog2" timestamp="1576871738860">
       <screen x="0" y="44" width="1920" height="1036" />
     </state>
-    <state x="1070" y="194" key="CommitChangelistDialog2/0.44.1920.1036@0.44.1920.1036" timestamp="1576868537437" />
+    <state x="1070" y="194" key="CommitChangelistDialog2/0.44.1920.1036@0.44.1920.1036" timestamp="1576871738860" />
     <state x="96" y="140" width="1728" height="844" key="DiffContextDialog" timestamp="1576871280651">
       <screen x="0" y="44" width="1920" height="1036" />
     </state>
@@ -1039,10 +1048,10 @@
       <screen x="0" y="44" width="1920" height="1036" />
     </state>
     <state x="444" y="144" key="SettingsEditor/0.44.1920.1036@0.44.1920.1036" timestamp="1576867923873" />
-    <state x="556" y="302" key="Vcs.Push.Dialog.v2" timestamp="1576868540967">
+    <state x="556" y="302" key="Vcs.Push.Dialog.v2" timestamp="1576871620088">
       <screen x="0" y="44" width="1920" height="1036" />
     </state>
-    <state x="556" y="302" key="Vcs.Push.Dialog.v2/0.44.1920.1036@0.44.1920.1036" timestamp="1576868540967" />
+    <state x="556" y="302" key="Vcs.Push.Dialog.v2/0.44.1920.1036@0.44.1920.1036" timestamp="1576871620088" />
     <state x="789" y="487" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1576784500112">
       <screen x="0" y="44" width="1920" height="1036" />
     </state>
@@ -1063,5 +1072,16 @@
       <screen x="0" y="44" width="1920" height="1036" />
     </state>
     <state x="623" y="270" width="672" height="678" key="search.everywhere.popup/0.44.1920.1036@0.44.1920.1036" timestamp="1576795098944" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/util/PathUtil.java</url>
+          <line>34</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
