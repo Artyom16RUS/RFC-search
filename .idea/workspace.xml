@@ -7,13 +7,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="07dc917a-896e-40a4-8770-b4a549415ad6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.travis.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.travis.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Procfile" beforeDir="false" afterPath="$PROJECT_DIR$/Procfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/servlet/DownloadController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servlet/DownloadController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/util/PathUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/util/PathUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/result.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/result.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -416,7 +409,7 @@
               <path>
                 <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
                 <item name="Tomcat Server" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="Running" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+                <item name="Finished" type="7427dc5b:ServiceModel$ServiceGroupNode" />
               </path>
             </expand>
             <select />
@@ -476,7 +469,7 @@
       <workItem from="1576776768607" duration="11670000" />
       <workItem from="1576795139777" duration="902000" />
       <workItem from="1576812010984" duration="747000" />
-      <workItem from="1576855166707" duration="6633000" />
+      <workItem from="1576855166707" duration="7083000" />
     </task>
     <task id="LOCAL-00001" summary="Start">
       <created>1575136874501</created>
@@ -758,7 +751,14 @@
       <option name="project" value="LOCAL" />
       <updated>1576861002073</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="changed web.xml">
+      <created>1576862931350</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1576862931350</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -778,7 +778,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added page search.jsp and rename result.jsp and main.jsp" />
     <MESSAGE value="Added page style.jsp" />
     <MESSAGE value="Changed method addFile" />
     <MESSAGE value="Added status" />
@@ -803,7 +802,8 @@
     <MESSAGE value="pom add tag build" />
     <MESSAGE value="JDK11" />
     <MESSAGE value="ArrayList to LinkedList" />
-    <option name="LAST_COMMIT_MESSAGE" value="ArrayList to LinkedList" />
+    <MESSAGE value="changed web.xml" />
+    <option name="LAST_COMMIT_MESSAGE" value="changed web.xml" />
   </component>
   <component name="WindowStateProjectService">
     <state x="743" y="374" key="#BuildArtifactsBeforeRunChooser" timestamp="1576777869466">
@@ -886,10 +886,10 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="937" y="179" key="#xdebugger.evaluate/0.0.1440.900@0.0.1440.900" timestamp="1576689465190" />
-    <state x="1070" y="194" key="CommitChangelistDialog2" timestamp="1576861255161">
+    <state x="1070" y="194" key="CommitChangelistDialog2" timestamp="1576862930987">
       <screen x="0" y="44" width="1920" height="1036" />
     </state>
-    <state x="1070" y="194" key="CommitChangelistDialog2/0.44.1920.1036@0.44.1920.1036" timestamp="1576861255161" />
+    <state x="1070" y="194" key="CommitChangelistDialog2/0.44.1920.1036@0.44.1920.1036" timestamp="1576862930987" />
     <state x="96" y="140" width="1728" height="844" key="DiffContextDialog" timestamp="1576610319116">
       <screen x="0" y="44" width="1920" height="1036" />
     </state>

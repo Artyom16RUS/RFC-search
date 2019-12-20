@@ -29,7 +29,7 @@ K<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
         <servlet-class>servlet.UploadController</servlet-class>
         <load-on-startup>1</load-on-startup>
         <multipart-config>
-            <max-request-size>10240</max-request-size>
+            <max-request-size>500000</max-request-size>
         </multipart-config>
     </servlet>
     <servlet-mapping>
