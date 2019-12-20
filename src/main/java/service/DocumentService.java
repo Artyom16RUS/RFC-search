@@ -10,7 +10,6 @@ import javax.naming.NamingException;
 import javax.servlet.http.Part;
 import java.io.*;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.util.*;
 import java.util.concurrent.ExecutorService;
@@ -36,7 +35,7 @@ public class DocumentService {
     }
 
     private void updateCollection() {
-        document = new ArrayList<>();
+        document = new LinkedList<>();
     }
 
     public Collection<String> getListNotAdded() {
@@ -48,7 +47,7 @@ public class DocumentService {
     }
 
     public void addFile(List<Part> fileParts, Path path) throws Exception {
-        listNotAdded = new ArrayList<>();
+        listNotAdded = new LinkedList<>();
         quantity = 0;
 
         for (Part part : fileParts) {

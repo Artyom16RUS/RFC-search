@@ -1,5 +1,6 @@
 package servlet;
 
+import Constant.Constant;
 import Constant.ConstantJSP;
 import model.Document;
 import service.DocumentService;
@@ -18,12 +19,10 @@ import java.util.Collection;
 
 public class SearchController extends HttpServlet {
 
-    private DocumentService documentService;
     private Collection<Document> documents;
 
     @Override
     public void init() {
-        documentService = new DocumentService();
         documents = new ArrayList<>();
     }
 
@@ -37,7 +36,7 @@ public class SearchController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
         String text = req.getParameter("search");
-        documents = documentService.searchByName(text);
+        documents = Constant.DOCUMENT_SERVICE.searchByName(text);
         resp.sendRedirect(req.getRequestURI());
     }
 }

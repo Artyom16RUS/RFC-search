@@ -9,9 +9,9 @@ import util.PathUtil;
 import java.io.*;
 import java.nio.file.Paths;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedHashSet;
+import java.util.LinkedList;
 
 public class SearchService implements Runnable {
 
@@ -40,7 +40,7 @@ public class SearchService implements Runnable {
                 String path = Paths.get(PathUtil.getUploadPathUri()) + File.separator + document.getId();
                 if (new File(path).exists()) {
                     BufferedReader bf = new BufferedReader(new InputStreamReader(new FileInputStream(path)));
-                    ArrayList<String> subResult = new ArrayList<>();
+                    LinkedList<String> subResult = new LinkedList<>();
                     subResult.add("[" + document.getName() + "]: ");
                     String line;
                     while ((line = bf.readLine()) != null) {
@@ -52,6 +52,7 @@ public class SearchService implements Runnable {
                         subResult.add(System.getProperty("line.separator"));
                         result.add(String.join(System.getProperty("line.separator"), subResult));
                     }
+                    bf.close();
                 }
             }
             String newId;
@@ -63,6 +64,7 @@ public class SearchService implements Runnable {
                     fw.write(string);
                     fw.flush();
                 }
+                fw.close();
             } else {
                 newId = Generates.createIdZero();
             }

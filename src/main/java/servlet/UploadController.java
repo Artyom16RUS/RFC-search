@@ -1,5 +1,6 @@
 package servlet;
 
+import Constant.Constant;
 import Constant.ConstantJSP;
 import service.DocumentService;
 import util.PathUtil;
@@ -15,19 +16,18 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class UploadController extends HttpServlet {
-    private DocumentService documentService;
+
     private Path uploadPath;
 
     @Override
     public void init() {
         uploadPath = PathUtil.getUploadPath();
-        documentService = new DocumentService();
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-        req.setAttribute(ConstantJSP.QUANTITY, documentService.getQuantity());
-        req.setAttribute(ConstantJSP.STATUS_NOT_ADD, documentService.getListNotAdded());
+        req.setAttribute(ConstantJSP.QUANTITY, Constant.DOCUMENT_SERVICE.getQuantity());
+        req.setAttribute(ConstantJSP.STATUS_NOT_ADD, Constant.DOCUMENT_SERVICE.getListNotAdded());
         req.getRequestDispatcher("/WEB-INF/main.jsp").forward(req, resp);
     }
 
@@ -39,7 +39,7 @@ public class UploadController extends HttpServlet {
                     .stream()
                     .filter(part -> "file".equals(part.getName()))
                     .collect(Collectors.toList());
-            documentService.addFile(fileParts, uploadPath);
+            Constant.DOCUMENT_SERVICE.addFile(fileParts, uploadPath);
             resp.sendRedirect(req.getRequestURI());
         } catch (Exception e) {
             e.printStackTrace();
