@@ -2,7 +2,6 @@ package servlet;
 
 import util.PathUtil;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,7 +15,7 @@ public class DownloadController extends HttpServlet {
 
     @Override
     public void init() {
-        publicPath = PathUtil.getPublicPath();
+        publicPath = PathUtil.getDownloadPath();
     }
 
     @Override

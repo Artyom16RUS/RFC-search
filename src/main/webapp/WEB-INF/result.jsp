@@ -60,7 +60,7 @@
                     <%= item.getName() %>
                 </td>
                 <td class="even">
-                    <a href="<%= request.getContextPath() %>/text/<%= item.getId() %>" download="<%= item.getName()%>.txt">Скачать файл</a>
+                    <a href="<%= request.getContextPath() %>/download/<%= item.getId() %>" download="<%= item.getName()%>.txt">Скачать файл</a>
                 </td>
                 <%} else {%>
                 <td class="lc">
