@@ -1,10 +1,10 @@
 package service;
 
+import Constant.Constant;
 import db.DataBaseResult;
 import db.DataBaseSource;
 import model.Document;
 import util.Generates;
-import Constant.Constant;
 
 import javax.naming.NamingException;
 import javax.servlet.http.Part;
@@ -13,7 +13,6 @@ import java.nio.file.Path;
 import java.sql.SQLException;
 import java.util.*;
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 
 public class DocumentService {
@@ -74,10 +73,8 @@ public class DocumentService {
         }
     }
 
-    public Collection<Document> searchByName(String name) {
-        ExecutorService service = Executors.newFixedThreadPool(Generates.getNumberCores());
-        service.execute(new SearchService(document, dbs, dbr, name));
-        service.shutdown();
+    public Collection<Document> searchByName(String name, ExecutorService service) {
+         service.execute(new SearchService(document, dbs, dbr, name));
         return document;
     }
 }
