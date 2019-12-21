@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.org/Artyom16RUS/RFC-search.svg?branch=master)](https://travis-ci.org/Artyom16RUS/RFC-search)
 
 
-### _[RFC-searcher](https://rfc-search.herokuapp.com/ "«Самый крутой поисковик, №1 в России")_
+### _[RFC-searcher](https://rfc-search.herokuapp.com/ "«Heroku")_ <- Heroku
 
 
 #### Проект – поисковая система с веб-
