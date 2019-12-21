@@ -58,7 +58,7 @@ public class SearchService implements Runnable {
             String newId;
             if (result.size() > 0) {
                 newId = Generates.createId();
-                String pathPublic = PathUtil.getDownloadPath() + "\\" + newId;
+                String pathPublic = PathUtil.getDownloadPath() + "/" + newId;
                 FileWriter fw = new FileWriter(pathPublic, true);
                 for (String string : result) {
                     fw.write(string);
