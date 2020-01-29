@@ -9,7 +9,7 @@
 2. Поиск по этим файлам через веб-интерфейс
 
 #### Что сервис умеет делать:
-* Мульти загрузка файлов (которые беруться отсюда  _[www.rfc-editor.org](https://www.rfc-editor.org/retrieve/bulk/ "«RFC-sercher")_ )
+* Мульти загрузка файлов (которые беруться отсюда  _[www.rfc-editor.org](https://www.rfc-editor.org/retrieve/bulk/ "«RFC-sercher")_
 * Проверка на соответсвие файла формату _.TXT_
 * Разворачивание в Heroku через Travis CI
 * Загрузка найдены строк в фаил формата _.TXT_
